@@ -1,0 +1,329 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experiences = [
+    {
+        year: '2025',
+        title: 'WeAreDevelopers World Congress',
+        location: 'Berlin, Germany',
+        type: 'conference',
+    },
+    {
+        year: '2025',
+        title: 'Eastern European Machine Learning Summer School',
+        location: 'Sarajevo, Bosnia & Herzegovina',
+        type: 'conference',
+    },
+    {
+        year: '2024',
+        title: 'LIYLS',
+        location: 'Virginia, USA',
+        type: 'international summit',
+    },
+    {
+        year: '2022',
+        title: 'European Digital Youth Summit',
+        location: 'Bucharest, Romania',
+        type: 'international program',
+    },
+    {
+        year: '2022',
+        title: 'STEM Youth Camp',
+        location: 'Konjic, Bosnia & Herzegovina',
+        type: 'STEM program',
+    },
+];
+
+const involvement = [
+    'European Youth Parliament',
+    'Model United Nations',
+    'Limes — school science & research journal',
+    'BH Futures Foundation',
+    'STEM and mathematics camps',
+    'Festival and community volunteering',
+];
+---
+
+<Layout title="elsewhere — Tarik Agić">
+    <main>
+        <header class="page-header">
+            <p>02 / elsewhere</p>
+            <h1>Beyond the coursework.</h1>
+            <span>
+                Science, community, conferences, organizing,
+                and the things I've joined along the way.
+            </span>
+        </header>
+
+        <section class="community">
+            <div class="section-label">community & leadership</div>
+
+            <article class="feature">
+                <div class="feature__meta">
+                    <span>2025 — present</span>
+                    <span>Sarajevo</span>
+                </div>
+
+                <div class="feature__content">
+                    <p class="feature__eyebrow">
+                        Scientific Association "Vladimir Prelog"
+                    </p>
+
+                    <h2>Secretary of Informatics</h2>
+
+                    <p>
+                        Working on initiatives that bring science,
+                        technology, and young people closer together.
+                    </p>
+                </div>
+            </article>
+
+            <div class="prolog-grid">
+                <article>
+                    <span>2025</span>
+                    <h3>Prolog 01</h3>
+                    <p>
+                        First edition of a technology and AI conference
+                        for high-school and university students.
+                    </p>
+                </article>
+
+                <article>
+                    <span>2026</span>
+                    <h3>Prolog 02</h3>
+                    <p>
+                        The second edition — expanded to three days of
+                        technology, AI, engineering, workshops and community.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="experiences">
+            <div class="section-heading">
+                <p>conferences & experiences</p>
+                <span>{experiences.length} selected</span>
+            </div>
+
+            <div class="experience-list">
+                {experiences.map((experience) => (
+                    <article class="experience">
+                        <span>{experience.year}</span>
+
+                        <div>
+                            <p>{experience.type}</p>
+                            <h3>{experience.title}</h3>
+                        </div>
+
+                        <span>{experience.location}</span>
+                    </article>
+                ))}
+            </div>
+        </section>
+
+        <section class="involvement">
+            <div class="section-heading">
+                <p>also along the way</p>
+            </div>
+
+            <div class="involvement-grid">
+                {involvement.map((item, index) => (
+                    <div>
+                        <span>{String(index + 1).padStart(2, '0')}</span>
+                        <p>{item}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .page-header {
+        min-height: 55vh;
+        padding: 120px 0 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-bottom: 1px solid #282828;
+    }
+
+    .page-header > p,
+    .section-label,
+    .section-heading p {
+        color: #777;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+    }
+
+    .page-header h1 {
+        max-width: 900px;
+        margin: 20px 0 24px;
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        font-weight: 500;
+    }
+
+    .page-header > span {
+        max-width: 550px;
+        color: #888;
+        line-height: 1.6;
+    }
+
+    .community,
+    .experiences,
+    .involvement {
+        padding: 100px 0;
+    }
+
+    .feature {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 48px;
+        margin-top: 40px;
+        padding: 48px 0;
+        border-top: 1px solid #282828;
+    }
+
+    .feature__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: #777;
+        font-size: 0.8rem;
+    }
+
+    .feature__eyebrow {
+        margin: 0 0 12px;
+        color: #888;
+    }
+
+    .feature h2 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 4.5rem);
+        font-weight: 500;
+        letter-spacing: -0.05em;
+    }
+
+    .feature__content > p:last-child {
+        max-width: 600px;
+        margin-top: 28px;
+        color: #999;
+        line-height: 1.6;
+    }
+
+    .prolog-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-top: 1px solid #282828;
+        border-left: 1px solid #282828;
+    }
+
+    .prolog-grid article {
+        min-height: 280px;
+        padding: 32px;
+        border-right: 1px solid #282828;
+        border-bottom: 1px solid #282828;
+    }
+
+    .prolog-grid span,
+    .prolog-grid p {
+        color: #888;
+    }
+
+    .prolog-grid h3 {
+        margin: 80px 0 16px;
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+    .prolog-grid p {
+        max-width: 450px;
+        line-height: 1.6;
+    }
+
+    .section-heading {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        color: #777;
+    }
+
+    .section-heading p {
+        margin: 0;
+    }
+
+    .experience-list {
+        border-top: 1px solid #282828;
+    }
+
+    .experience {
+        display: grid;
+        grid-template-columns: 100px 1fr auto;
+        gap: 32px;
+        align-items: center;
+        padding: 28px 0;
+        border-bottom: 1px solid #282828;
+    }
+
+    .experience > span,
+    .experience p {
+        color: #777;
+        font-size: 0.8rem;
+    }
+
+    .experience p {
+        margin: 0 0 6px;
+    }
+
+    .experience h3 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    .involvement-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-top: 1px solid #282828;
+        border-left: 1px solid #282828;
+    }
+
+    .involvement-grid div {
+        display: flex;
+        gap: 32px;
+        padding: 28px;
+        border-right: 1px solid #282828;
+        border-bottom: 1px solid #282828;
+    }
+
+    .involvement-grid span {
+        color: #666;
+        font-size: 0.8rem;
+    }
+
+    .involvement-grid p {
+        margin: 0;
+    }
+
+    @media (max-width: 700px) {
+        .feature {
+            grid-template-columns: 1fr;
+        }
+
+        .prolog-grid,
+        .involvement-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .experience {
+            grid-template-columns: 60px 1fr;
+        }
+
+        .experience > span:last-child {
+            grid-column: 2;
+        }
+    }
+</style>

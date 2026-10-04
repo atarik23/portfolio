@@ -1,0 +1,296 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const interests = [
+    'artificial intelligence',
+    'software engineering',
+    'mathematics',
+    'science',
+    'education',
+    'technology communities',
+];
+
+const currently = [
+    {
+        label: 'studying',
+        value: 'Data Science & Artificial Intelligence',
+    },
+    {
+        label: 'at',
+        value: 'University of Sarajevo',
+    },
+    {
+        label: 'based in',
+        value: 'Sarajevo, Bosnia & Herzegovina',
+    },
+];
+---
+
+<Layout title="about — Tarik Agić">
+    <main>
+        <header class="page-header">
+            <p>04 / about</p>
+
+            <h1>A little more<br />about me.</h1>
+
+            <span>
+                Student, developer, teaching assistant, organizer,
+                and someone who still likes exploring things outside
+                a single field.
+            </span>
+        </header>
+
+        <section class="intro">
+            <div class="section-label">the short version</div>
+
+            <div class="intro__content">
+                <p class="intro__lead">
+                    I'm Tarik, a Data Science & Artificial Intelligence
+                    student from Sarajevo.
+                </p>
+
+                <div class="intro__text">
+                    <p>
+                        Long before I started working with machine learning
+                        and software, most of my time went into mathematics,
+                        physics, competitions, and science programs.
+                    </p>
+
+                    <p>
+                        That gradually turned into a broader interest in
+                        computing and artificial intelligence — not just
+                        learning how things work, but building them,
+                        experimenting with them, and sharing that knowledge
+                        with others.
+                    </p>
+
+                    <p>
+                        Today, my time is split between university,
+                        software and AI projects, research, teaching,
+                        and organizing initiatives for young people
+                        interested in science and technology.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="currently">
+            <div class="section-label">currently</div>
+
+            <div class="currently__grid">
+                {currently.map((item) => (
+                    <div class="currently__item">
+                        <span>{item.label}</span>
+                        <p>{item.value}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <section class="interests">
+            <div class="section-label">things I keep coming back to</div>
+
+            <div class="interests__list">
+                {interests.map((interest, index) => (
+                    <div class="interest">
+                        <span>
+                            {String(index + 1).padStart(2, '0')}
+                        </span>
+
+                        <p>{interest}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <section class="closing">
+            <p>
+                I don't really see these as separate worlds.
+            </p>
+
+            <h2>
+                I like learning how things work,
+                building things that didn't exist before,
+                and being around people who are curious enough
+                to do the same.
+            </h2>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .page-header {
+        min-height: 65vh;
+        padding: 120px 0 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-bottom: 1px solid #282828;
+    }
+
+    .page-header > p,
+    .section-label {
+        color: #777;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+    }
+
+    .page-header h1 {
+        margin: 20px 0 32px;
+        font-size: clamp(4rem, 10vw, 9rem);
+        line-height: 0.86;
+        letter-spacing: -0.07em;
+        font-weight: 500;
+    }
+
+    .page-header > span {
+        max-width: 560px;
+        color: #888;
+        line-height: 1.6;
+    }
+
+    .intro,
+    .currently,
+    .interests {
+        padding: 100px 0;
+        border-bottom: 1px solid #282828;
+    }
+
+    .intro__content {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 100px;
+        margin-top: 48px;
+    }
+
+    .intro__lead {
+        margin: 0;
+        max-width: 650px;
+        font-size: clamp(2rem, 4.5vw, 4rem);
+        line-height: 1.08;
+        letter-spacing: -0.05em;
+    }
+
+    .intro__text {
+        padding-top: 8px;
+    }
+
+    .intro__text p {
+        margin: 0 0 24px;
+        color: #999;
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .currently__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 48px;
+        border-top: 1px solid #282828;
+        border-left: 1px solid #282828;
+    }
+
+    .currently__item {
+        min-height: 180px;
+        padding: 28px;
+        border-right: 1px solid #282828;
+        border-bottom: 1px solid #282828;
+    }
+
+    .currently__item span {
+        color: #666;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+    }
+
+    .currently__item p {
+        margin: 70px 0 0;
+        max-width: 280px;
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .interests__list {
+        margin-top: 48px;
+        border-top: 1px solid #282828;
+    }
+
+    .interest {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        align-items: center;
+        padding: 24px 0;
+        border-bottom: 1px solid #282828;
+    }
+
+    .interest span {
+        color: #555;
+        font-size: 0.75rem;
+    }
+
+    .interest p {
+        margin: 0;
+        font-size: clamp(1.4rem, 3vw, 2.4rem);
+        letter-spacing: -0.03em;
+    }
+
+    .closing {
+        padding: 140px 0 160px;
+    }
+
+    .closing > p {
+        margin: 0 0 32px;
+        color: #777;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: lowercase;
+    }
+
+    .closing h2 {
+        max-width: 1000px;
+        margin: 0;
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        line-height: 1;
+        letter-spacing: -0.055em;
+        font-weight: 500;
+    }
+
+    @media (max-width: 700px) {
+        .page-header {
+            min-height: 55vh;
+            padding-top: 80px;
+        }
+
+        .intro,
+        .currently,
+        .interests {
+            padding: 72px 0;
+        }
+
+        .intro__content {
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        .currently__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .currently__item {
+            min-height: 140px;
+        }
+
+        .currently__item p {
+            margin-top: 48px;
+        }
+
+        .interest {
+            grid-template-columns: 60px 1fr;
+        }
+
+        .closing {
+            padding: 100px 0 120px;
+        }
+    }
+</style>

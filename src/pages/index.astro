@@ -1,11 +1,274 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Tarik Agić">
+    <main>
+        <section class="hero">
+            <p class="hero__eyebrow">Sarajevo, Bosnia & Herzegovina</p>
+
+            <h1>
+                Tarik
+                <span>Agić</span>
+            </h1>
+
+            <div class="hero__bottom">
+                <p class="hero__intro">
+                    Data Science & AI student exploring software,
+                    machine learning, research, and everything in between.
+                </p>
+
+                <p class="hero__status">
+                    Currently studying, teaching,
+                    building & organizing.
+                </p>
+            </div>
+        </section>
+		<section class="highlights">
+			<div class="section-heading">
+				<p>selected highlights</p>
+				<span>A few things I've been up to.</span>
+			</div>
+
+			<div class="highlights__grid">
+				<article class="highlight">
+					<span class="highlight__meta">2026 · AI</span>
+					<h2>Raiffeisen AI Hackathon</h2>
+					<p>1st place</p>
+				</article>
+
+				<article class="highlight">
+					<span class="highlight__meta">2025–2026 · Community</span>
+					<h2>Prolog</h2>
+					<p>Organizer of two editions of a youth technology conference.</p>
+				</article>
+
+				<article class="highlight">
+					<span class="highlight__meta">Research · OCR / HTR</span>
+					<h2>BosančicaAI</h2>
+					<p>Researching recognition of historical Bosančica documents.</p>
+				</article>
+
+				<article class="highlight">
+					<span class="highlight__meta">2026 · Teaching</span>
+					<h2>Fundamental Concepts of AI</h2>
+					<p>Teaching Assistant</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="explore">
+			<p class="explore__label">explore</p>
+
+			<div class="explore__links">
+				<a href="/work">
+					<span>01</span>
+					<strong>work</strong>
+					<span>projects, research & experience →</span>
+				</a>
+
+				<a href="/journey">
+					<span>02</span>
+					<strong>journey</strong>
+					<span>the timeline →</span>
+				</a>
+
+				<a href="/elsewhere">
+					<span>03</span>
+					<strong>elsewhere</strong>
+					<span>science, community & more →</span>
+				</a>
+
+				<a href="/about">
+					<span>04</span>
+					<strong>about</strong>
+					<span>a little more about me →</span>
+				</a>
+			</div>
+		</section>
+    </main>
 </Layout>
+
+<style>
+    .hero {
+        min-height: calc(100vh - 88px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 0 80px;
+    }
+
+    .hero__eyebrow {
+        margin: 0 0 24px;
+        color: #8a8a8a;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: clamp(5rem, 14vw, 12rem);
+        font-weight: 600;
+        line-height: 0.78;
+        letter-spacing: -0.07em;
+    }
+
+    h1 span {
+        display: block;
+        margin-left: 0.65em;
+    }
+
+    .hero__bottom {
+        margin-top: 72px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 48px;
+        align-items: end;
+    }
+
+    .hero__intro,
+    .hero__status {
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .hero__intro {
+        max-width: 560px;
+        font-size: 1.15rem;
+    }
+
+    .hero__status {
+        max-width: 260px;
+        color: #8a8a8a;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+        .hero {
+            justify-content: flex-start;
+            padding-top: 100px;
+        }
+
+        h1 {
+            font-size: clamp(4.5rem, 23vw, 8rem);
+        }
+
+        h1 span {
+            margin-left: 0;
+        }
+
+        .hero__bottom {
+            margin-top: 56px;
+            grid-template-columns: 1fr;
+        }
+    }
+
+	.highlights,
+	.explore {
+		padding: 120px 0;
+	}
+
+	.section-heading {
+		display: flex;
+		justify-content: space-between;
+		gap: 32px;
+		margin-bottom: 48px;
+		color: #8a8a8a;
+	}
+
+	.section-heading p,
+	.section-heading span {
+		margin: 0;
+	}
+
+	.section-heading p,
+	.explore__label {
+		font-size: 0.8rem;
+		text-transform: lowercase;
+		letter-spacing: 0.12em;
+	}
+
+	.highlights__grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		border-top: 1px solid #282828;
+		border-left: 1px solid #282828;
+	}
+
+	.highlight {
+		min-height: 260px;
+		padding: 32px;
+		border-right: 1px solid #282828;
+		border-bottom: 1px solid #282828;
+	}
+
+	.highlight__meta {
+		color: #777;
+		font-size: 0.8rem;
+	}
+
+	.highlight h2 {
+		max-width: 450px;
+		margin: 72px 0 12px;
+		font-size: clamp(1.5rem, 3vw, 2.5rem);
+		font-weight: 500;
+		letter-spacing: -0.04em;
+	}
+
+	.highlight p {
+		margin: 0;
+		color: #999;
+	}
+
+	.explore__label {
+		margin: 0 0 32px;
+		color: #777;
+	}
+
+	.explore__links {
+		border-top: 1px solid #282828;
+	}
+
+	.explore__links a {
+		display: grid;
+		grid-template-columns: 80px 1fr auto;
+		align-items: center;
+		gap: 24px;
+		padding: 28px 0;
+		border-bottom: 1px solid #282828;
+	}
+
+	.explore__links strong {
+		font-size: clamp(1.5rem, 4vw, 3.5rem);
+		font-weight: 500;
+		letter-spacing: -0.04em;
+	}
+
+	.explore__links span {
+		color: #777;
+	}
+
+	@media (max-width: 700px) {
+		.highlights,
+		.explore {
+			padding: 80px 0;
+		}
+
+		.section-heading {
+			flex-direction: column;
+		}
+
+		.highlights__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.explore__links a {
+			grid-template-columns: 40px 1fr;
+		}
+
+		.explore__links a span:last-child {
+			display: none;
+		}
+	}
+</style>

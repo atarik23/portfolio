@@ -1,0 +1,304 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+    {
+        period: 'Mar 2026 — May 2026',
+        role: 'AI Full-Stack Developer',
+        organization: 'Next IT d.o.o.',
+        description:
+            'Developed a full-stack AI-powered web application as part of a collaborative development team.',
+        tags: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'LLMs'],
+    },
+    {
+        period: 'Sep 2025 — Jan 2026',
+        role: 'Teaching Assistant',
+        organization: 'Faculty of Electrical Engineering, University of Sarajevo',
+        description:
+            'Teaching Assistant for the Fundamental Concepts of AI course.',
+        tags: ['Artificial Intelligence', 'Teaching'],
+    },
+];
+
+const projects = [
+    {
+        year: '2026',
+        title: 'BosančicaAI',
+        type: 'Research · OCR / HTR',
+        description:
+            'Research on recognition of historical Bosančica documents using modern OCR and handwriting recognition approaches.',
+        status: 'collaborative research',
+    },
+    {
+        year: '2026',
+        title: 'Uchko',
+        type: 'Machine Learning · Full-stack',
+        description:
+            'An adaptive learning platform combining student-success prediction, knowledge tracing, and personalized learning.',
+        status: 'work in progress',
+    },
+    {
+        year: '2026',
+        title: 'Mean-Variance Portfolio Optimizer',
+        type: 'C++ · Numerical Optimization',
+        description:
+            'Long-only mean-variance portfolio optimization using an active-set QP solver and dense and sparse matrix backends.',
+        status: 'course project',
+    },
+    {
+        year: '2026',
+        title: '8-bit Adder',
+        type: 'Formal Models · Digital Logic',
+        description:
+            'An 8-bit digital adder project exploring formal models and digital circuit design.',
+        status: 'course project',
+    },
+    {
+        year: '2026',
+        title: 'Pizzo',
+        type: 'Artificial Intelligence · C++',
+        description:
+            'An artificial intelligence course project implemented in C++ using the natID framework.',
+        status: 'course project',
+    },
+    {
+        year: '2026',
+        title: 'Variational Autoencoder Experiments',
+        type: 'Machine Learning',
+        description:
+            'VAE experiments on MNIST covering reconstruction, generation, latent-space visualization, and interpolation.',
+        status: 'course project',
+    },
+];
+---
+
+<Layout title="work — Tarik Agić">
+    <main>
+        <header class="page-header">
+            <p>01 / work</p>
+            <h1>Things I've worked on.</h1>
+            <span>
+                Professional work, teaching, research, and projects.
+            </span>
+        </header>
+
+        <section class="section">
+            <div class="section__title">
+                <p>experience</p>
+            </div>
+
+            <div class="experience-list">
+                {experience.map((item) => (
+                    <article class="experience-item">
+                        <p class="period">{item.period}</p>
+
+                        <div class="experience-item__content">
+                            <h2>{item.role}</h2>
+                            <p class="organization">{item.organization}</p>
+                            <p class="description">{item.description}</p>
+
+                            <div class="tags">
+                                {item.tags.map((tag) => (
+                                    <span>{tag}</span>
+                                ))}
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section__title">
+                <p>selected work</p>
+                <span>{projects.length} entries</span>
+            </div>
+
+            <div class="project-list">
+                {projects.map((project, index) => (
+                    <article class="project">
+                        <div class="project__number">
+                            {String(index + 1).padStart(2, '0')}
+                        </div>
+
+                        <div>
+                            <p class="project__type">{project.type}</p>
+                            <h2>{project.title}</h2>
+                            <p class="project__description">
+                                {project.description}
+                            </p>
+                        </div>
+
+                        <div class="project__meta">
+                            <span>{project.year}</span>
+                            <span>{project.status}</span>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .page-header {
+        min-height: 55vh;
+        padding: 120px 0 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-bottom: 1px solid #282828;
+    }
+
+    .page-header > p,
+    .section__title p {
+        color: #777;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+    }
+
+    .page-header h1 {
+        max-width: 900px;
+        margin: 20px 0 24px;
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+        font-weight: 500;
+    }
+
+    .page-header > span {
+        color: #888;
+    }
+
+    .section {
+        padding: 100px 0;
+    }
+
+    .section__title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        color: #777;
+    }
+
+    .section__title p {
+        margin: 0;
+    }
+
+    .experience-list,
+    .project-list {
+        border-top: 1px solid #282828;
+    }
+
+    .experience-item {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 48px;
+        padding: 40px 0;
+        border-bottom: 1px solid #282828;
+    }
+
+    .period {
+        margin: 0;
+        color: #777;
+    }
+
+    .experience-item h2 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+    }
+
+    .organization {
+        margin: 8px 0 28px;
+        color: #999;
+    }
+
+    .description {
+        max-width: 650px;
+        line-height: 1.6;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 24px;
+    }
+
+    .tags span {
+        padding: 7px 11px;
+        border: 1px solid #333;
+        border-radius: 999px;
+        color: #999;
+        font-size: 0.75rem;
+    }
+
+    .project {
+        display: grid;
+        grid-template-columns: 80px 1fr 180px;
+        gap: 32px;
+        padding: 40px 0;
+        border-bottom: 1px solid #282828;
+    }
+
+    .project__number,
+    .project__type,
+    .project__meta {
+        color: #777;
+        font-size: 0.8rem;
+    }
+
+    .project__type {
+        margin: 0 0 10px;
+    }
+
+    .project h2 {
+        margin: 0;
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+    }
+
+    .project__description {
+        max-width: 650px;
+        margin: 18px 0 0;
+        color: #999;
+        line-height: 1.6;
+    }
+
+    .project__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: right;
+    }
+
+    @media (max-width: 700px) {
+        .page-header {
+            min-height: 45vh;
+            padding-top: 80px;
+        }
+
+        .section {
+            padding: 70px 0;
+        }
+
+        .experience-item {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .project {
+            grid-template-columns: 40px 1fr;
+        }
+
+        .project__meta {
+            grid-column: 2;
+            flex-direction: row;
+            text-align: left;
+        }
+    }
+</style>

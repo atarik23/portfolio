@@ -1,0 +1,41 @@
+<nav class="navbar">
+    <a class="navbar__name" href="/">Tarik Agić</a>
+
+    <div class="navbar__links">
+        <a href="/about">about</a>
+        <a href="/work">work</a>
+        <a href="/journey">journey</a>
+        <a href="/elsewhere">elsewhere</a>
+    </div>
+</nav>
+
+<style>
+    .navbar {
+        width: min(1200px, calc(100% - 48px));
+        height: 88px;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .navbar__name {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .navbar__links {
+        display: flex;
+        gap: 32px;
+    }
+
+    .navbar__links a {
+        color: #a3a3a3;
+        transition: color 150ms ease;
+    }
+
+    .navbar__links a:hover {
+        color: #ffffff;
+    }
+</style>

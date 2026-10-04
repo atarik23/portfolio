@@ -1,0 +1,303 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const journey = [
+    {
+        year: '2026',
+        items: [
+            {
+                title: '1st Place — Raiffeisen AI Hackathon',
+                type: 'award',
+                description:
+                    'Won first place at the Raiffeisen AI Hackathon.',
+            },
+            {
+                title: 'AI Full-Stack Developer — Next IT',
+                type: 'work',
+                description:
+                    'Worked on full-stack development of an AI-powered web application.',
+            },
+            {
+                title: 'BosančicaAI',
+                type: 'research',
+                description:
+                    'Contributed to collaborative OCR/HTR research on historical Bosančica documents.',
+            },
+            {
+                title: 'Prolog 02',
+                type: 'community',
+                description:
+                    'Organized the second edition of Prolog, expanding the conference to three days of technology, AI and engineering.',
+            },
+        ],
+    },
+    {
+        year: '2025',
+        items: [
+            {
+                title: 'Teaching Assistant — Fundamental Concepts of AI',
+                type: 'teaching',
+                description:
+                    'Joined the Faculty of Electrical Engineering, University of Sarajevo as a teaching assistant.',
+            },
+            {
+                title: 'Prolog 01',
+                type: 'community',
+                description:
+                    'Organized the first edition of Prolog, a technology conference for high-school and university students.',
+            },
+            {
+                title: 'EEML',
+                type: 'conference',
+                description:
+                    'Attended the Eastern European Machine Learning Summer School in Sarajevo.',
+            },
+            {
+                title: 'WeAreDevelopers World Congress',
+                type: 'conference',
+                description:
+                    'Attended WeAreDevelopers World Congress in Berlin.',
+            },
+        ],
+    },
+    {
+        year: '2024',
+        items: [
+            {
+                title: 'Started Data Science & Artificial Intelligence',
+                type: 'education',
+                description:
+                    'Began undergraduate studies at the Faculty of Electrical Engineering, University of Sarajevo.',
+            },
+            {
+                title: 'International STEM Olympiad',
+                type: 'award',
+                description:
+                    'Won a bronze medal in Mathematics at the 2024 final.',
+            },
+            {
+                title: 'Fyziklani',
+                type: 'competition',
+                description:
+                    'Competed in the international physics competition in Prague, finishing 53rd in Category A.',
+            },
+            {
+                title: 'Loudoun International Youth Leadership Summit',
+                type: 'international',
+                description:
+                    'Participated in LIYLS 2024 in Virginia, USA.',
+            },
+            {
+                title: 'Graduated from Prva bošnjačka gimnazija',
+                type: 'education',
+                description:
+                    'Graduated as Student of the Generation / Valedictorian, with an AICE Diploma with Distinction.',
+            },
+        ],
+    },
+    {
+        year: '2022',
+        items: [
+            {
+                title: 'European Digital Youth Summit',
+                type: 'international',
+                description:
+                    'Participated in the European Digital Youth Summit in Bucharest.',
+            },
+            {
+                title: 'STEM Youth Camp',
+                type: 'science',
+                description:
+                    'Participated in the STEM Youth Camp in Konjic organized by ANNT.',
+            },
+        ],
+    },
+    {
+        year: '2021',
+        items: [
+            {
+                title: '1st Place — BRAVO Civic Hackathon',
+                type: 'award',
+                description:
+                    'Won first place at the BRAVO Civic Hackathon.',
+            },
+        ],
+    },
+    {
+        year: '2019',
+        items: [
+            {
+                title: 'Federal Mathematics Competition',
+                type: 'competition',
+                description:
+                    'Won first place at the Federal Mathematics Competition.',
+            },
+            {
+                title: 'Federal Physics Competition',
+                type: 'competition',
+                description:
+                    'Won first place at the Federal Physics Competition.',
+            },
+        ],
+    },
+];
+---
+
+<Layout title="journey — Tarik Agić">
+    <main>
+        <header class="page-header">
+            <p>03 / journey</p>
+
+            <h1>So far.</h1>
+
+            <span>
+                A timeline of competitions, education, technology,
+                research, community, and a few detours along the way.
+            </span>
+        </header>
+
+        <section class="timeline">
+            {journey.map((period) => (
+                <div class="year">
+                    <div class="year__label">
+                        <span>{period.year}</span>
+                    </div>
+
+                    <div class="year__content">
+                        {period.items.map((item) => (
+                            <article class="event">
+                                <p class="event__type">{item.type}</p>
+
+                                <h2>{item.title}</h2>
+
+                                <p class="event__description">
+                                    {item.description}
+                                </p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .page-header {
+        min-height: 55vh;
+        padding: 120px 0 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-bottom: 1px solid #282828;
+    }
+
+    .page-header > p {
+        color: #777;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+    }
+
+    .page-header h1 {
+        margin: 20px 0 24px;
+        font-size: clamp(4rem, 10vw, 9rem);
+        line-height: 0.9;
+        letter-spacing: -0.07em;
+        font-weight: 500;
+    }
+
+    .page-header > span {
+        max-width: 600px;
+        color: #888;
+        line-height: 1.6;
+    }
+
+    .timeline {
+        padding: 80px 0 140px;
+    }
+
+    .year {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        border-bottom: 1px solid #282828;
+    }
+
+    .year__label {
+        padding: 48px 0;
+        border-right: 1px solid #282828;
+    }
+
+    .year__label span {
+        position: sticky;
+        top: 120px;
+
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 500;
+        letter-spacing: -0.05em;
+    }
+
+    .year__content {
+        padding-left: 48px;
+    }
+
+    .event {
+        padding: 48px 0;
+        border-bottom: 1px solid #202020;
+    }
+
+    .event:last-child {
+        border-bottom: none;
+    }
+
+    .event__type {
+        margin: 0 0 14px;
+        color: #666;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: lowercase;
+    }
+
+    .event h2 {
+        max-width: 700px;
+        margin: 0;
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+    }
+
+    .event__description {
+        max-width: 600px;
+        margin: 16px 0 0;
+        color: #888;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 700px) {
+        .page-header {
+            min-height: 45vh;
+            padding-top: 80px;
+        }
+
+        .timeline {
+            padding-top: 40px;
+        }
+
+        .year {
+            grid-template-columns: 1fr;
+        }
+
+        .year__label {
+            padding: 40px 0 10px;
+            border-right: none;
+        }
+
+        .year__label span {
+            position: static;
+        }
+
+        .year__content {
+            padding-left: 0;
+        }
+    }
+</style>
