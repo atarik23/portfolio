@@ -10,24 +10,32 @@ const journey = [
                 type: 'award',
                 description:
                     'Won first place at the Raiffeisen AI Hackathon.',
+                href: 'https://www.klix.ba/biznis/ai-rjesenja-koja-mijenjaju-bankarstvo-poznati-pobjednici-raiffeisen-ai-hackathona/260518102',
+                external: true,
             },
             {
                 title: 'AI Full-Stack Developer — Next IT',
                 type: 'work',
                 description:
-                    'Worked on full-stack development of an AI-powered web application.',
+                    'Worked as part of a development team on a full-stack AI-powered web application.',
+                href: '/work',
+                external: false,
             },
             {
                 title: 'BosančicaAI',
                 type: 'research',
                 description:
-                    'Contributed to collaborative OCR/HTR research on historical Bosančica documents.',
+                    'Contributed to collaborative OCR and HTR research on historical Bosančica documents.',
+                href: '/work',
+                external: false,
             },
             {
                 title: 'Prolog 02',
                 type: 'community',
                 description:
-                    'Organized the second edition of Prolog, expanding the conference to three days of technology, AI and engineering.',
+                    'Organized the second edition of Prolog, expanding the conference to three days of technology, AI, and engineering.',
+                href: '/elsewhere',
+                external: false,
             },
         ],
     },
@@ -39,24 +47,32 @@ const journey = [
                 type: 'teaching',
                 description:
                     'Joined the Faculty of Electrical Engineering, University of Sarajevo as a teaching assistant.',
+                href: '/work',
+                external: false,
             },
             {
                 title: 'Prolog 01',
                 type: 'community',
                 description:
                     'Organized the first edition of Prolog, a technology conference for high-school and university students.',
+                href: '/elsewhere',
+                external: false,
             },
             {
                 title: 'EEML',
                 type: 'conference',
                 description:
                     'Attended the Eastern European Machine Learning Summer School in Sarajevo.',
+                href: '/elsewhere',
+                external: false,
             },
             {
                 title: 'WeAreDevelopers World Congress',
                 type: 'conference',
                 description:
-                    'Attended WeAreDevelopers World Congress in Berlin.',
+                    'Attended the WeAreDevelopers World Congress in Berlin.',
+                href: '/elsewhere',
+                external: false,
             },
         ],
     },
@@ -68,30 +84,40 @@ const journey = [
                 type: 'education',
                 description:
                     'Began undergraduate studies at the Faculty of Electrical Engineering, University of Sarajevo.',
+                href: null,
+                external: false,
             },
             {
                 title: 'International STEM Olympiad',
                 type: 'award',
                 description:
                     'Won a bronze medal in Mathematics at the 2024 final.',
+                href: null,
+                external: false,
             },
             {
                 title: 'Fyziklani',
                 type: 'competition',
                 description:
                     'Competed in the international physics competition in Prague, finishing 53rd in Category A.',
+                href: null,
+                external: false,
             },
             {
                 title: 'Loudoun International Youth Leadership Summit',
                 type: 'international',
                 description:
                     'Participated in LIYLS 2024 in Virginia, USA.',
+                href: null,
+                external: false,
             },
             {
                 title: 'Graduated from Prva bošnjačka gimnazija',
                 type: 'education',
                 description:
                     'Graduated as Student of the Generation / Valedictorian, with an AICE Diploma with Distinction.',
+                href: null,
+                external: false,
             },
         ],
     },
@@ -103,12 +129,16 @@ const journey = [
                 type: 'international',
                 description:
                     'Participated in the European Digital Youth Summit in Bucharest.',
+                href: null,
+                external: false,
             },
             {
                 title: 'STEM Youth Camp',
                 type: 'science',
                 description:
                     'Participated in the STEM Youth Camp in Konjic organized by ANNT.',
+                href: null,
+                external: false,
             },
         ],
     },
@@ -120,6 +150,8 @@ const journey = [
                 type: 'award',
                 description:
                     'Won first place at the BRAVO Civic Hackathon.',
+                href: null,
+                external: false,
             },
         ],
     },
@@ -131,12 +163,16 @@ const journey = [
                 type: 'competition',
                 description:
                     'Won first place at the Federal Mathematics Competition.',
+                href: null,
+                external: false,
             },
             {
                 title: 'Federal Physics Competition',
                 type: 'competition',
                 description:
                     'Won first place at the Federal Physics Competition.',
+                href: null,
+                external: false,
             },
         ],
     },
@@ -165,15 +201,39 @@ const journey = [
 
                     <div class="year__content">
                         {period.items.map((item) => (
-                            <article class="event">
-                                <p class="event__type">{item.type}</p>
+                            item.href ? (
+                                <a
+                                    class="event event--linked"
+                                    href={item.href}
+                                    target={item.external ? '_blank' : undefined}
+                                    rel={item.external ? 'noopener noreferrer' : undefined}
+                                >
+                                    <div class="event__top">
+                                        <p class="event__type">{item.type}</p>
+                                        <span class="event__action">
+                                            {item.external ? '↗' : '→'}
+                                        </span>
+                                    </div>
 
-                                <h2>{item.title}</h2>
+                                    <h2>{item.title}</h2>
 
-                                <p class="event__description">
-                                    {item.description}
-                                </p>
-                            </article>
+                                    <p class="event__description">
+                                        {item.description}
+                                    </p>
+                                </a>
+                            ) : (
+                                <article class="event">
+                                    <div class="event__top">
+                                        <p class="event__type">{item.type}</p>
+                                    </div>
+
+                                    <h2>{item.title}</h2>
+
+                                    <p class="event__description">
+                                        {item.description}
+                                    </p>
+                                </article>
+                            )
                         ))}
                     </div>
                 </div>
@@ -231,7 +291,6 @@ const journey = [
     .year__label span {
         position: sticky;
         top: 120px;
-
         font-size: clamp(2rem, 5vw, 4rem);
         font-weight: 500;
         letter-spacing: -0.05em;
@@ -242,12 +301,22 @@ const journey = [
     }
 
     .event {
+        position: relative;
+        display: block;
         padding: 48px 0;
         border-bottom: 1px solid #202020;
     }
 
     .event:last-child {
         border-bottom: none;
+    }
+
+    .event__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        max-width: 760px;
     }
 
     .event__type {
@@ -258,12 +327,26 @@ const journey = [
         text-transform: lowercase;
     }
 
+    .event__action {
+        color: #666;
+        font-size: 0.9rem;
+        opacity: 0;
+        transform: translateX(-6px);
+        transition:
+            opacity 180ms ease,
+            transform 180ms ease,
+            color 180ms ease;
+    }
+
     .event h2 {
         max-width: 700px;
         margin: 0;
         font-size: clamp(1.5rem, 3vw, 2.5rem);
         font-weight: 500;
         letter-spacing: -0.04em;
+        transition:
+            transform 180ms ease,
+            color 180ms ease;
     }
 
     .event__description {
@@ -271,6 +354,26 @@ const journey = [
         margin: 16px 0 0;
         color: #888;
         line-height: 1.6;
+        transition: color 180ms ease;
+    }
+
+    .event--linked {
+        cursor: pointer;
+    }
+
+    .event--linked:hover h2 {
+        transform: translateX(8px);
+        color: #fff;
+    }
+
+    .event--linked:hover .event__description {
+        color: #aaa;
+    }
+
+    .event--linked:hover .event__action {
+        opacity: 1;
+        transform: translateX(0);
+        color: #aaa;
     }
 
     @media (max-width: 700px) {
@@ -281,6 +384,7 @@ const journey = [
 
         .timeline {
             padding-top: 40px;
+            padding-bottom: 100px;
         }
 
         .year {
@@ -298,6 +402,15 @@ const journey = [
 
         .year__content {
             padding-left: 0;
+        }
+
+        .event__action {
+            opacity: 1;
+            transform: none;
+        }
+
+        .event--linked:hover h2 {
+            transform: none;
         }
     }
 </style>

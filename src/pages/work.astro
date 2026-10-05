@@ -7,7 +7,7 @@ const experience = [
         role: 'AI Full-Stack Developer',
         organization: 'Next IT d.o.o.',
         description:
-            'Developed a full-stack AI-powered web application as part of a collaborative development team.',
+            'Worked as part of a collaborative development team on a full-stack AI-powered web application, spanning frontend, backend, data, and LLM integration.',
         tags: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'LLMs'],
     },
     {
@@ -26,48 +26,60 @@ const projects = [
         title: 'BosančicaAI',
         type: 'Research · OCR / HTR',
         description:
-            'Research on recognition of historical Bosančica documents using modern OCR and handwriting recognition approaches.',
+            'Collaborative research on OCR and handwriting recognition for historical Bosančica documents, combining document segmentation and modern recognition approaches.',
         status: 'collaborative research',
+        href: 'https://github.com/ehadziabdic/BosancicaAI',
+        linkLabel: 'GitHub ↗',
     },
     {
         year: '2026',
         title: 'Uchko',
         type: 'Machine Learning · Full-stack',
         description:
-            'An adaptive learning platform combining student-success prediction, knowledge tracing, and personalized learning.',
+            'An adaptive learning platform exploring student-success prediction, knowledge tracing, and personalized learning.',
         status: 'work in progress',
-    },
-    {
-        year: '2026',
-        title: 'Mean-Variance Portfolio Optimizer',
-        type: 'C++ · Numerical Optimization',
-        description:
-            'Long-only mean-variance portfolio optimization using an active-set QP solver and dense and sparse matrix backends.',
-        status: 'course project',
-    },
-    {
-        year: '2026',
-        title: '8-bit Adder',
-        type: 'Formal Models · Digital Logic',
-        description:
-            'An 8-bit digital adder project exploring formal models and digital circuit design.',
-        status: 'course project',
+        href: null,
+        linkLabel: null,
     },
     {
         year: '2026',
         title: 'Pizzo',
         type: 'Artificial Intelligence · C++',
         description:
-            'An artificial intelligence course project implemented in C++ using the natID framework.',
-        status: 'course project',
+            'An artificial intelligence project implemented in C++ using the natID framework.',
+        status: 'AI system',
+        href: null,
+        linkLabel: null,
+    },
+    {
+        year: '2026',
+        title: '8-bit Adder',
+        type: 'Formal Models · Digital Logic',
+        description:
+            'An 8-bit digital adder exploring formal models, digital logic, and circuit design.',
+        status: 'digital logic',
+        href: null,
+        linkLabel: null,
+    },
+    {
+        year: '2026',
+        title: 'Mean-Variance Portfolio Optimizer',
+        type: 'C++ · Numerical Optimization',
+        description:
+            'Long-only mean-variance portfolio optimization using an active-set QP solver with dense and sparse matrix backends.',
+        status: 'numerical optimization',
+        href: null,
+        linkLabel: null,
     },
     {
         year: '2026',
         title: 'Variational Autoencoder Experiments',
-        type: 'Machine Learning',
+        type: 'Machine Learning · VAE',
         description:
-            'VAE experiments on MNIST covering reconstruction, generation, latent-space visualization, and interpolation.',
-        status: 'course project',
+            'Experiments on MNIST covering reconstruction, generation, latent-space visualization, and interpolation.',
+        status: 'machine learning',
+        href: null,
+        linkLabel: null,
     },
 ];
 ---
@@ -76,15 +88,19 @@ const projects = [
     <main>
         <header class="page-header">
             <p>01 / work</p>
+
             <h1>Things I've worked on.</h1>
+
             <span>
-                Professional work, teaching, research, and projects.
+                Professional work, teaching, research, and things I've built
+                along the way.
             </span>
         </header>
 
         <section class="section">
             <div class="section__title">
                 <p>experience</p>
+                <span>professional & teaching</span>
             </div>
 
             <div class="experience-list">
@@ -94,8 +110,14 @@ const projects = [
 
                         <div class="experience-item__content">
                             <h2>{item.role}</h2>
-                            <p class="organization">{item.organization}</p>
-                            <p class="description">{item.description}</p>
+
+                            <p class="organization">
+                                {item.organization}
+                            </p>
+
+                            <p class="description">
+                                {item.description}
+                            </p>
 
                             <div class="tags">
                                 {item.tags.map((tag) => (
@@ -108,9 +130,9 @@ const projects = [
             </div>
         </section>
 
-        <section class="section">
+        <section class="section projects-section">
             <div class="section__title">
-                <p>selected work</p>
+                <p>projects & research</p>
                 <span>{projects.length} entries</span>
             </div>
 
@@ -121,12 +143,27 @@ const projects = [
                             {String(index + 1).padStart(2, '0')}
                         </div>
 
-                        <div>
-                            <p class="project__type">{project.type}</p>
+                        <div class="project__content">
+                            <p class="project__type">
+                                {project.type}
+                            </p>
+
                             <h2>{project.title}</h2>
+
                             <p class="project__description">
                                 {project.description}
                             </p>
+
+                            {project.href && (
+                                <a
+                                    class="project__link"
+                                    href={project.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {project.linkLabel}
+                                </a>
+                            )}
                         </div>
 
                         <div class="project__meta">
@@ -168,7 +205,9 @@ const projects = [
     }
 
     .page-header > span {
+        max-width: 600px;
         color: #888;
+        line-height: 1.6;
     }
 
     .section {
@@ -178,13 +217,21 @@ const projects = [
     .section__title {
         display: flex;
         justify-content: space-between;
+        gap: 32px;
         margin-bottom: 40px;
         color: #777;
     }
 
-    .section__title p {
+    .section__title p,
+    .section__title span {
         margin: 0;
     }
+
+    .section__title span {
+        font-size: 0.85rem;
+    }
+
+    /* EXPERIENCE */
 
     .experience-list,
     .project-list {
@@ -193,22 +240,23 @@ const projects = [
 
     .experience-item {
         display: grid;
-        grid-template-columns: 1fr 3fr;
+        grid-template-columns: minmax(180px, 1fr) 3fr;
         gap: 48px;
-        padding: 40px 0;
+        padding: 48px 0;
         border-bottom: 1px solid #282828;
     }
 
     .period {
         margin: 0;
         color: #777;
+        font-size: 0.9rem;
     }
 
     .experience-item h2 {
         margin: 0;
-        font-size: 2rem;
+        font-size: clamp(1.8rem, 3vw, 2.7rem);
         font-weight: 500;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.04em;
     }
 
     .organization {
@@ -217,15 +265,17 @@ const projects = [
     }
 
     .description {
-        max-width: 650px;
-        line-height: 1.6;
+        max-width: 680px;
+        margin: 0;
+        color: #b0b0b0;
+        line-height: 1.7;
     }
 
     .tags {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin-top: 24px;
+        margin-top: 28px;
     }
 
     .tags span {
@@ -236,12 +286,26 @@ const projects = [
         font-size: 0.75rem;
     }
 
+    /* PROJECTS */
+
+    .projects-section {
+        padding-bottom: 140px;
+    }
+
     .project {
+        position: relative;
         display: grid;
         grid-template-columns: 80px 1fr 180px;
         gap: 32px;
-        padding: 40px 0;
+        padding: 48px 0;
         border-bottom: 1px solid #282828;
+        transition:
+            padding-left 180ms ease,
+            background-color 180ms ease;
+    }
+
+    .project:hover {
+        padding-left: 12px;
     }
 
     .project__number,
@@ -251,22 +315,26 @@ const projects = [
         font-size: 0.8rem;
     }
 
+    .project__number {
+        padding-top: 4px;
+    }
+
     .project__type {
         margin: 0 0 10px;
     }
 
     .project h2 {
         margin: 0;
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-size: clamp(1.8rem, 3.5vw, 3rem);
         font-weight: 500;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.045em;
     }
 
     .project__description {
-        max-width: 650px;
+        max-width: 680px;
         margin: 18px 0 0;
         color: #999;
-        line-height: 1.6;
+        line-height: 1.65;
     }
 
     .project__meta {
@@ -274,6 +342,21 @@ const projects = [
         flex-direction: column;
         gap: 8px;
         text-align: right;
+    }
+
+    .project__link {
+        display: inline-block;
+        margin-top: 24px;
+        color: #999;
+        font-size: 0.85rem;
+        transition:
+            color 180ms ease,
+            transform 180ms ease;
+    }
+
+    .project__link:hover {
+        color: #fff;
+        transform: translateX(4px);
     }
 
     @media (max-width: 700px) {
@@ -286,18 +369,33 @@ const projects = [
             padding: 70px 0;
         }
 
+        .projects-section {
+            padding-bottom: 100px;
+        }
+
+        .section__title {
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .experience-item {
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 18px;
         }
 
         .project {
             grid-template-columns: 40px 1fr;
+            gap: 20px;
+        }
+
+        .project:hover {
+            padding-left: 0;
         }
 
         .project__meta {
             grid-column: 2;
             flex-direction: row;
+            gap: 16px;
             text-align: left;
         }
     }

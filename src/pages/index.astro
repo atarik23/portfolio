@@ -12,6 +12,15 @@ import Layout from '../layouts/Layout.astro';
                 <span>Agić</span>
             </h1>
 
+            <div class="hero__portrait">
+                <div class="hero__portrait-inner">
+                    <img
+                        src="/images/tarik.jpg"
+                        alt="Tarik Agić"
+                    />
+                </div>
+            </div>
+
             <div class="hero__bottom">
                 <p class="hero__intro">
                     Data Science & AI student exploring software,
@@ -24,73 +33,109 @@ import Layout from '../layouts/Layout.astro';
                 </p>
             </div>
         </section>
-		<section class="highlights">
-			<div class="section-heading">
-				<p>selected highlights</p>
-				<span>A few things I've been up to.</span>
-			</div>
 
-			<div class="highlights__grid">
-				<article class="highlight">
-					<span class="highlight__meta">2026 · AI</span>
-					<h2>Raiffeisen AI Hackathon</h2>
-					<p>1st place</p>
-				</article>
+        <section class="highlights">
+            <div class="section-heading">
+                <p>selected highlights</p>
+                <span>A few things I've been up to.</span>
+            </div>
 
-				<article class="highlight">
-					<span class="highlight__meta">2025–2026 · Community</span>
-					<h2>Prolog</h2>
-					<p>Organizer of two editions of a youth technology conference.</p>
-				</article>
+            <div class="highlights__grid">
+                <a
+                    class="highlight"
+                    href="https://www.klix.ba/biznis/ai-rjesenja-koja-mijenjaju-bankarstvo-poznati-pobjednici-raiffeisen-ai-hackathona/260518102"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <span class="highlight__meta">2026 · AI</span>
 
-				<article class="highlight">
-					<span class="highlight__meta">Research · OCR / HTR</span>
-					<h2>BosančicaAI</h2>
-					<p>Researching recognition of historical Bosančica documents.</p>
-				</article>
+                    <div class="highlight__content">
+                        <h2>Raiffeisen AI Hackathon</h2>
+                        <p>1st place</p>
+                    </div>
 
-				<article class="highlight">
-					<span class="highlight__meta">2026 · Teaching</span>
-					<h2>Fundamental Concepts of AI</h2>
-					<p>Teaching Assistant</p>
-				</article>
-			</div>
-		</section>
+                    <span class="highlight__action">read more ↗</span>
+                </a>
 
-		<section class="explore">
-			<p class="explore__label">explore</p>
+                <a
+                    class="highlight"
+                    href="/elsewhere"
+                >
+                    <span class="highlight__meta">2025–2026 · Community</span>
 
-			<div class="explore__links">
-				<a href="/work">
-					<span>01</span>
-					<strong>work</strong>
-					<span>projects, research & experience →</span>
-				</a>
+                    <div class="highlight__content">
+                        <h2>Prolog</h2>
+                        <p>Organizer of two editions of a youth technology conference.</p>
+                    </div>
 
-				<a href="/journey">
-					<span>02</span>
-					<strong>journey</strong>
-					<span>the timeline →</span>
-				</a>
+                    <span class="highlight__action">explore →</span>
+                </a>
 
-				<a href="/elsewhere">
-					<span>03</span>
-					<strong>elsewhere</strong>
-					<span>science, community & more →</span>
-				</a>
+                <a
+                    class="highlight"
+                    href="/work"
+                >
+                    <span class="highlight__meta">Research · OCR / HTR</span>
 
-				<a href="/about">
-					<span>04</span>
-					<strong>about</strong>
-					<span>a little more about me →</span>
-				</a>
-			</div>
-		</section>
+                    <div class="highlight__content">
+                        <h2>BosančicaAI</h2>
+                        <p>Collaborative research on OCR and HTR for historical Bosančica documents.</p>
+                    </div>
+
+                    <span class="highlight__action">view project →</span>
+                </a>
+
+                <a
+                    class="highlight"
+                    href="/work"
+                >
+                    <span class="highlight__meta">2025 · Teaching</span>
+
+                    <div class="highlight__content">
+                        <h2>Fundamental Concepts of AI</h2>
+                        <p>Teaching Assistant</p>
+                    </div>
+
+                    <span class="highlight__action">more →</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="explore">
+            <p class="explore__label">explore</p>
+
+            <div class="explore__links">
+                <a href="/work">
+                    <span>01</span>
+                    <strong>work</strong>
+                    <span>projects, research & experience →</span>
+                </a>
+
+                <a href="/journey">
+                    <span>02</span>
+                    <strong>journey</strong>
+                    <span>the timeline →</span>
+                </a>
+
+                <a href="/elsewhere">
+                    <span>03</span>
+                    <strong>elsewhere</strong>
+                    <span>science, community & more →</span>
+                </a>
+
+                <a href="/about">
+                    <span>04</span>
+                    <strong>about</strong>
+                    <span>a little more about me →</span>
+                </a>
+            </div>
+        </section>
     </main>
 </Layout>
 
 <style>
     .hero {
+        position: relative;
         min-height: calc(100vh - 88px);
         display: flex;
         flex-direction: column;
@@ -107,6 +152,9 @@ import Layout from '../layouts/Layout.astro';
     }
 
     h1 {
+        position: relative;
+        z-index: 2;
+        width: fit-content;
         margin: 0;
         font-size: clamp(5rem, 14vw, 12rem);
         font-weight: 600;
@@ -119,10 +167,117 @@ import Layout from '../layouts/Layout.astro';
         margin-left: 0.65em;
     }
 
+    .hero__portrait {
+        position: absolute;
+        z-index: 1;
+        width: clamp(270px, 21vw, 350px);
+        right: 5%;
+        top: 43%;
+        padding: 8px;
+        border: 1px solid #303030;
+        background: #0a0a0a;
+        transform: translateY(-50%) rotate(1.5deg);
+        transition:
+            transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1),
+            border-color 300ms ease;
+    }
+
+    .hero__portrait::before,
+    .hero__portrait::after {
+        content: "";
+        position: absolute;
+        z-index: 3;
+        width: 22px;
+        height: 22px;
+        pointer-events: none;
+        transition:
+            width 300ms ease,
+            height 300ms ease,
+            border-color 300ms ease;
+    }
+
+    .hero__portrait::before {
+        top: -1px;
+        left: -1px;
+        border-top: 1px solid #8a8a8a;
+        border-left: 1px solid #8a8a8a;
+    }
+
+    .hero__portrait::after {
+        right: -1px;
+        bottom: -1px;
+        border-right: 1px solid #8a8a8a;
+        border-bottom: 1px solid #8a8a8a;
+    }
+
+    .hero__portrait-inner {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        background: #111;
+    }
+
+    .hero__portrait-inner::before,
+    .hero__portrait-inner::after {
+        content: "";
+        position: absolute;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    .hero__portrait-inner::before {
+        top: 10px;
+        right: 10px;
+        border-top: 1px solid #f5f5f5;
+        border-right: 1px solid #f5f5f5;
+    }
+
+    .hero__portrait-inner::after {
+        bottom: 10px;
+        left: 10px;
+        border-bottom: 1px solid #f5f5f5;
+        border-left: 1px solid #f5f5f5;
+    }
+
+    .hero__portrait img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center 18%;
+        filter: saturate(0.72) brightness(0.9) contrast(1.04);
+        transform: scale(1.015);
+        transition:
+            transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1),
+            filter 450ms ease;
+    }
+
+    .hero__portrait:hover {
+        border-color: #666;
+        transform: translateY(-50%) rotate(0deg) translateY(-7px);
+    }
+
+    .hero__portrait:hover::before,
+    .hero__portrait:hover::after {
+        width: 32px;
+        height: 32px;
+        border-color: #f5f5f5;
+    }
+
+    .hero__portrait:hover img {
+        transform: scale(1.055);
+        filter: saturate(1) brightness(1) contrast(1);
+    }
+
     .hero__bottom {
+        position: relative;
+        z-index: 2;
         margin-top: 72px;
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: minmax(0, 560px) 1fr;
         gap: 48px;
         align-items: end;
     }
@@ -139,15 +294,25 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .hero__status {
+        justify-self: end;
         max-width: 260px;
         color: #8a8a8a;
         font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+        .hero__portrait {
+            width: clamp(220px, 28vw, 290px);
+            right: 0;
+            top: 42%;
+        }
     }
 
     @media (max-width: 700px) {
         .hero {
             justify-content: flex-start;
             padding-top: 100px;
+            padding-bottom: 64px;
         }
 
         h1 {
@@ -158,117 +323,186 @@ import Layout from '../layouts/Layout.astro';
             margin-left: 0;
         }
 
+        .hero__portrait {
+            position: relative;
+            width: min(82%, 340px);
+            right: auto;
+            top: auto;
+            margin-top: 48px;
+            margin-left: auto;
+            transform: rotate(1.5deg);
+        }
+
+        .hero__portrait:hover {
+            transform: rotate(0deg) translateY(-5px);
+        }
+
         .hero__bottom {
             margin-top: 56px;
             grid-template-columns: 1fr;
         }
+
+        .hero__status {
+            justify-self: start;
+        }
     }
 
-	.highlights,
-	.explore {
-		padding: 120px 0;
-	}
+    .highlights,
+    .explore {
+        padding: 120px 0;
+    }
 
-	.section-heading {
-		display: flex;
-		justify-content: space-between;
-		gap: 32px;
-		margin-bottom: 48px;
-		color: #8a8a8a;
-	}
+    .section-heading {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 48px;
+        color: #8a8a8a;
+    }
 
-	.section-heading p,
-	.section-heading span {
-		margin: 0;
-	}
+    .section-heading p,
+    .section-heading span {
+        margin: 0;
+    }
 
-	.section-heading p,
-	.explore__label {
-		font-size: 0.8rem;
-		text-transform: lowercase;
-		letter-spacing: 0.12em;
-	}
+    .section-heading p,
+    .explore__label {
+        font-size: 0.8rem;
+        text-transform: lowercase;
+        letter-spacing: 0.12em;
+    }
 
-	.highlights__grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		border-top: 1px solid #282828;
-		border-left: 1px solid #282828;
-	}
+    .highlights__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-top: 1px solid #282828;
+        border-left: 1px solid #282828;
+    }
 
-	.highlight {
-		min-height: 260px;
-		padding: 32px;
-		border-right: 1px solid #282828;
-		border-bottom: 1px solid #282828;
-	}
+    .highlight {
+        position: relative;
+        min-height: 280px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid #282828;
+        border-bottom: 1px solid #282828;
+        transition:
+            background-color 180ms ease,
+            padding 180ms ease;
+    }
 
-	.highlight__meta {
-		color: #777;
-		font-size: 0.8rem;
-	}
+    .highlight:hover {
+        background: #111111;
+    }
 
-	.highlight h2 {
-		max-width: 450px;
-		margin: 72px 0 12px;
-		font-size: clamp(1.5rem, 3vw, 2.5rem);
-		font-weight: 500;
-		letter-spacing: -0.04em;
-	}
+    .highlight__content {
+        margin-top: auto;
+    }
 
-	.highlight p {
-		margin: 0;
-		color: #999;
-	}
+    .highlight__action {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        color: #777;
+        font-size: 0.8rem;
+        opacity: 0;
+        transform: translateY(4px);
+        transition:
+            opacity 180ms ease,
+            transform 180ms ease;
+    }
 
-	.explore__label {
-		margin: 0 0 32px;
-		color: #777;
-	}
+    .highlight:hover .highlight__action {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-	.explore__links {
-		border-top: 1px solid #282828;
-	}
+    .highlight__meta {
+        color: #777;
+        font-size: 0.8rem;
+    }
 
-	.explore__links a {
-		display: grid;
-		grid-template-columns: 80px 1fr auto;
-		align-items: center;
-		gap: 24px;
-		padding: 28px 0;
-		border-bottom: 1px solid #282828;
-	}
+    .highlight h2 {
+        max-width: 450px;
+        margin: 72px 0 12px;
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+    }
 
-	.explore__links strong {
-		font-size: clamp(1.5rem, 4vw, 3.5rem);
-		font-weight: 500;
-		letter-spacing: -0.04em;
-	}
+    .highlight p {
+        margin: 0;
+        color: #999;
+    }
 
-	.explore__links span {
-		color: #777;
-	}
+    .explore__label {
+        margin: 0 0 32px;
+        color: #777;
+    }
 
-	@media (max-width: 700px) {
-		.highlights,
-		.explore {
-			padding: 80px 0;
-		}
+    .explore__links {
+        border-top: 1px solid #282828;
+    }
 
-		.section-heading {
-			flex-direction: column;
-		}
+    .explore__links a {
+        display: grid;
+        grid-template-columns: 80px 1fr auto;
+        align-items: center;
+        gap: 24px;
+        padding: 28px 0;
+        border-bottom: 1px solid #282828;
+        transition: padding 180ms ease;
+    }
 
-		.highlights__grid {
-			grid-template-columns: 1fr;
-		}
+    .explore__links a strong,
+    .explore__links a span {
+        transition: color 180ms ease;
+    }
 
-		.explore__links a {
-			grid-template-columns: 40px 1fr;
-		}
+    .explore__links a:hover {
+        padding-left: 16px;
+    }
 
-		.explore__links a span:last-child {
-			display: none;
-		}
-	}
+    .explore__links a:hover strong {
+        color: #ffffff;
+    }
+
+    .explore__links a:hover span:last-child {
+        color: #b5b5b5;
+    }
+
+    .explore__links strong {
+        font-size: clamp(1.5rem, 4vw, 3.5rem);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+    }
+
+    .explore__links span {
+        color: #777;
+    }
+
+    @media (max-width: 700px) {
+        .highlights,
+        .explore {
+            padding: 80px 0;
+        }
+
+        .section-heading {
+            flex-direction: column;
+        }
+
+        .highlights__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .explore__links a {
+            grid-template-columns: 40px 1fr;
+        }
+
+        .explore__links a span:last-child {
+            display: none;
+        }
+    }
 </style>

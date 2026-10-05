@@ -6,17 +6,17 @@ const experiences = [
         year: '2025',
         title: 'WeAreDevelopers World Congress',
         location: 'Berlin, Germany',
-        type: 'conference',
+        type: 'technology conference',
     },
     {
         year: '2025',
         title: 'Eastern European Machine Learning Summer School',
         location: 'Sarajevo, Bosnia & Herzegovina',
-        type: 'conference',
+        type: 'machine learning summer school',
     },
     {
         year: '2024',
-        title: 'LIYLS',
+        title: 'Loudoun International Youth Leadership Summit',
         location: 'Virginia, USA',
         type: 'international summit',
     },
@@ -35,12 +35,30 @@ const experiences = [
 ];
 
 const involvement = [
-    'European Youth Parliament',
-    'Model United Nations',
-    'Limes — school science & research journal',
-    'BH Futures Foundation',
-    'STEM and mathematics camps',
-    'Festival and community volunteering',
+    {
+        title: 'BH Futures Foundation',
+        type: 'community',
+    },
+    {
+        title: 'European Youth Parliament',
+        type: 'youth engagement',
+    },
+    {
+        title: 'Model United Nations',
+        type: 'youth engagement',
+    },
+    {
+        title: 'Limes',
+        type: 'science & research journal',
+    },
+    {
+        title: 'STEM & mathematics camps',
+        type: 'science',
+    },
+    {
+        title: 'Festival & community volunteering',
+        type: 'volunteering',
+    },
 ];
 ---
 
@@ -48,53 +66,93 @@ const involvement = [
     <main>
         <header class="page-header">
             <p>02 / elsewhere</p>
+
             <h1>Beyond the coursework.</h1>
+
             <span>
                 Science, community, conferences, organizing,
-                and the things I've joined along the way.
+                and some of the places curiosity has taken me.
             </span>
         </header>
 
         <section class="community">
-            <div class="section-label">community & leadership</div>
+            <div class="section-heading">
+                <p>community & leadership</p>
+                <span>Sarajevo · 2025 — present</span>
+            </div>
 
             <article class="feature">
                 <div class="feature__meta">
-                    <span>2025 — present</span>
-                    <span>Sarajevo</span>
+                    <span>Scientific Association</span>
+                    <span>Vladimir Prelog</span>
                 </div>
 
                 <div class="feature__content">
                     <p class="feature__eyebrow">
-                        Scientific Association "Vladimir Prelog"
+                        Naučno društvo "Vladimir Prelog"
                     </p>
 
                     <h2>Secretary of Informatics</h2>
 
                     <p>
-                        Working on initiatives that bring science,
-                        technology, and young people closer together.
+                        Working on initiatives that connect young people
+                        with science, technology, and opportunities to
+                        learn, build, and collaborate.
                     </p>
                 </div>
             </article>
 
-            <div class="prolog-grid">
-                <article>
-                    <span>2025</span>
-                    <h3>Prolog 01</h3>
+            <div class="prolog-intro">
+                <div>
+                    <p>one of those initiatives</p>
+                </div>
+
+                <div>
+                    <h2>Prolog</h2>
+
                     <p>
-                        First edition of a technology and AI conference
-                        for high-school and university students.
+                        A technology conference for high-school and
+                        university students, built around technology,
+                        artificial intelligence, engineering, learning,
+                        and community.
                     </p>
+                </div>
+            </div>
+
+            <div class="prolog-grid">
+                <article class="prolog-card">
+                    <div class="prolog-card__top">
+                        <span>01</span>
+                        <span>2025</span>
+                    </div>
+
+                    <div>
+                        <h3>Prolog 01</h3>
+
+                        <p>
+                            The first edition brought together students
+                            interested in technology and AI for lectures,
+                            practical sessions, and conversations with
+                            people from academia and industry.
+                        </p>
+                    </div>
                 </article>
 
-                <article>
-                    <span>2026</span>
-                    <h3>Prolog 02</h3>
-                    <p>
-                        The second edition — expanded to three days of
-                        technology, AI, engineering, workshops and community.
-                    </p>
+                <article class="prolog-card">
+                    <div class="prolog-card__top">
+                        <span>02</span>
+                        <span>2026</span>
+                    </div>
+
+                    <div>
+                        <h3>Prolog 02</h3>
+
+                        <p>
+                            The second edition expanded Prolog into a
+                            three-day conference covering technology,
+                            AI, engineering, workshops, and community.
+                        </p>
+                    </div>
                 </article>
             </div>
         </section>
@@ -108,14 +166,18 @@ const involvement = [
             <div class="experience-list">
                 {experiences.map((experience) => (
                     <article class="experience">
-                        <span>{experience.year}</span>
+                        <span class="experience__year">
+                            {experience.year}
+                        </span>
 
-                        <div>
+                        <div class="experience__content">
                             <p>{experience.type}</p>
                             <h3>{experience.title}</h3>
                         </div>
 
-                        <span>{experience.location}</span>
+                        <span class="experience__location">
+                            {experience.location}
+                        </span>
                     </article>
                 ))}
             </div>
@@ -124,14 +186,22 @@ const involvement = [
         <section class="involvement">
             <div class="section-heading">
                 <p>also along the way</p>
+                <span>communities, programs & volunteering</span>
             </div>
 
             <div class="involvement-grid">
                 {involvement.map((item, index) => (
-                    <div>
-                        <span>{String(index + 1).padStart(2, '0')}</span>
-                        <p>{item}</p>
-                    </div>
+                    <article class="involvement-item">
+                        <div class="involvement-item__top">
+                            <span>
+                                {String(index + 1).padStart(2, '0')}
+                            </span>
+
+                            <span>{item.type}</span>
+                        </div>
+
+                        <p>{item.title}</p>
+                    </article>
                 ))}
             </div>
         </section>
@@ -149,7 +219,6 @@ const involvement = [
     }
 
     .page-header > p,
-    .section-label,
     .section-heading p {
         color: #777;
         font-size: 0.8rem;
@@ -167,7 +236,7 @@ const involvement = [
     }
 
     .page-header > span {
-        max-width: 550px;
+        max-width: 580px;
         color: #888;
         line-height: 1.6;
     }
@@ -178,19 +247,37 @@ const involvement = [
         padding: 100px 0;
     }
 
+    .section-heading {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 40px;
+        color: #777;
+    }
+
+    .section-heading p,
+    .section-heading span {
+        margin: 0;
+    }
+
+    .section-heading span {
+        font-size: 0.85rem;
+    }
+
+    /* COMMUNITY */
+
     .feature {
         display: grid;
         grid-template-columns: 1fr 3fr;
         gap: 48px;
-        margin-top: 40px;
-        padding: 48px 0;
+        padding: 56px 0 80px;
         border-top: 1px solid #282828;
     }
 
     .feature__meta {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
         color: #777;
         font-size: 0.8rem;
     }
@@ -201,17 +288,51 @@ const involvement = [
     }
 
     .feature h2 {
+        max-width: 850px;
         margin: 0;
-        font-size: clamp(2rem, 5vw, 4.5rem);
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        line-height: 0.95;
+        font-weight: 500;
+        letter-spacing: -0.06em;
+    }
+
+    .feature__content > p:last-child {
+        max-width: 620px;
+        margin: 32px 0 0;
+        color: #999;
+        line-height: 1.7;
+    }
+
+    /* PROLOG */
+
+    .prolog-intro {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 48px;
+        padding: 64px 0;
+        border-top: 1px solid #282828;
+    }
+
+    .prolog-intro > div:first-child p {
+        margin: 0;
+        color: #777;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: lowercase;
+    }
+
+    .prolog-intro h2 {
+        margin: 0;
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
         font-weight: 500;
         letter-spacing: -0.05em;
     }
 
-    .feature__content > p:last-child {
-        max-width: 600px;
-        margin-top: 28px;
+    .prolog-intro > div:last-child p {
+        max-width: 650px;
+        margin: 24px 0 0;
         color: #999;
-        line-height: 1.6;
+        line-height: 1.7;
     }
 
     .prolog-grid {
@@ -221,39 +342,43 @@ const involvement = [
         border-left: 1px solid #282828;
     }
 
-    .prolog-grid article {
-        min-height: 280px;
+    .prolog-card {
+        min-height: 340px;
         padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         border-right: 1px solid #282828;
         border-bottom: 1px solid #282828;
+        transition: background-color 180ms ease;
     }
 
-    .prolog-grid span,
-    .prolog-grid p {
-        color: #888;
+    .prolog-card:hover {
+        background: #111;
     }
 
-    .prolog-grid h3 {
-        margin: 80px 0 16px;
-        font-size: 2rem;
+    .prolog-card__top {
+        display: flex;
+        justify-content: space-between;
+        color: #777;
+        font-size: 0.8rem;
+    }
+
+    .prolog-card h3 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
         font-weight: 500;
+        letter-spacing: -0.045em;
     }
 
-    .prolog-grid p {
-        max-width: 450px;
+    .prolog-card p {
+        max-width: 470px;
+        margin: 18px 0 0;
+        color: #888;
         line-height: 1.6;
     }
 
-    .section-heading {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 32px;
-        color: #777;
-    }
-
-    .section-heading p {
-        margin: 0;
-    }
+    /* EXPERIENCES */
 
     .experience-list {
         border-top: 1px solid #282828;
@@ -264,24 +389,41 @@ const involvement = [
         grid-template-columns: 100px 1fr auto;
         gap: 32px;
         align-items: center;
-        padding: 28px 0;
+        padding: 32px 0;
         border-bottom: 1px solid #282828;
+        transition: padding-left 180ms ease;
     }
 
-    .experience > span,
+    .experience:hover {
+        padding-left: 10px;
+    }
+
+    .experience__year,
+    .experience__location,
     .experience p {
         color: #777;
         font-size: 0.8rem;
     }
 
     .experience p {
-        margin: 0 0 6px;
+        margin: 0 0 7px;
     }
 
     .experience h3 {
         margin: 0;
-        font-size: 1.4rem;
+        font-size: clamp(1.25rem, 2.5vw, 1.7rem);
         font-weight: 500;
+        letter-spacing: -0.025em;
+    }
+
+    .experience__location {
+        text-align: right;
+    }
+
+    /* INVOLVEMENT */
+
+    .involvement {
+        padding-bottom: 140px;
     }
 
     .involvement-grid {
@@ -291,26 +433,56 @@ const involvement = [
         border-left: 1px solid #282828;
     }
 
-    .involvement-grid div {
-        display: flex;
-        gap: 32px;
+    .involvement-item {
+        min-height: 170px;
         padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         border-right: 1px solid #282828;
         border-bottom: 1px solid #282828;
+        transition: background-color 180ms ease;
     }
 
-    .involvement-grid span {
+    .involvement-item:hover {
+        background: #111;
+    }
+
+    .involvement-item__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
         color: #666;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
-    .involvement-grid p {
-        margin: 0;
+    .involvement-item p {
+        margin: 32px 0 0;
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+        letter-spacing: -0.025em;
     }
 
     @media (max-width: 700px) {
-        .feature {
+        .page-header {
+            min-height: 45vh;
+            padding-top: 80px;
+        }
+
+        .community,
+        .experiences,
+        .involvement {
+            padding: 70px 0;
+        }
+
+        .section-heading {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .feature,
+        .prolog-intro {
             grid-template-columns: 1fr;
+            gap: 28px;
         }
 
         .prolog-grid,
@@ -318,12 +490,26 @@ const involvement = [
             grid-template-columns: 1fr;
         }
 
-        .experience {
-            grid-template-columns: 60px 1fr;
+        .prolog-card {
+            min-height: 280px;
         }
 
-        .experience > span:last-child {
+        .experience {
+            grid-template-columns: 60px 1fr;
+            gap: 20px;
+        }
+
+        .experience:hover {
+            padding-left: 0;
+        }
+
+        .experience__location {
             grid-column: 2;
+            text-align: left;
+        }
+
+        .involvement {
+            padding-bottom: 100px;
         }
     }
 </style>

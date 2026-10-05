@@ -1,15 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const interests = [
-    'artificial intelligence',
-    'software engineering',
-    'mathematics',
-    'science',
-    'education',
-    'technology communities',
-];
-
 const currently = [
     {
         label: 'studying',
@@ -24,6 +15,29 @@ const currently = [
         value: 'Sarajevo, Bosnia & Herzegovina',
     },
 ];
+
+const outside = [
+    {
+        number: '01',
+        title: 'Football',
+        note: 'watching, playing, arguing about it',
+    },
+    {
+        number: '02',
+        title: 'Chess',
+        note: 'occasionally thinking before moving',
+    },
+    {
+        number: '03',
+        title: 'Skiing',
+        note: 'winter > staying indoors',
+    },
+    {
+        number: '04',
+        title: 'Travel',
+        note: 'new cities, people & perspectives',
+    },
+];
 ---
 
 <Layout title="about — Tarik Agić">
@@ -34,9 +48,7 @@ const currently = [
             <h1>A little more<br />about me.</h1>
 
             <span>
-                Student, developer, teaching assistant, organizer,
-                and someone who still likes exploring things outside
-                a single field.
+                The part that doesn't quite fit into a CV.
             </span>
         </header>
 
@@ -45,30 +57,28 @@ const currently = [
 
             <div class="intro__content">
                 <p class="intro__lead">
-                    I'm Tarik, a Data Science & Artificial Intelligence
-                    student from Sarajevo.
+                    I'm Tarik, from Sarajevo. I like figuring things out.
                 </p>
 
                 <div class="intro__text">
                     <p>
-                        Long before I started working with machine learning
-                        and software, most of my time went into mathematics,
-                        physics, competitions, and science programs.
+                        For a long time, that mostly meant mathematics and
+                        physics — competitions, problems, and spending far
+                        too much time trying to understand why something works.
                     </p>
 
                     <p>
-                        That gradually turned into a broader interest in
-                        computing and artificial intelligence — not just
-                        learning how things work, but building them,
-                        experimenting with them, and sharing that knowledge
-                        with others.
+                        Eventually, computers entered the picture. Today I'm
+                        studying Data Science & Artificial Intelligence, but
+                        I'm still much more interested in exploring across
+                        fields than staying inside a single one.
                     </p>
 
                     <p>
-                        Today, my time is split between university,
-                        software and AI projects, research, teaching,
-                        and organizing initiatives for young people
-                        interested in science and technology.
+                        Some days that means machine learning or software.
+                        Others mean teaching, organizing something, travelling,
+                        playing football, losing a chess game, or going down
+                        a completely unrelated rabbit hole.
                     </p>
                 </div>
             </div>
@@ -87,33 +97,76 @@ const currently = [
             </div>
         </section>
 
-        <section class="interests">
-            <div class="section-label">things I keep coming back to</div>
+        <section class="outside">
+            <div class="outside__heading">
+                <div class="section-label">outside the terminal</div>
 
-            <div class="interests__list">
-                {interests.map((interest, index) => (
-                    <div class="interest">
-                        <span>
-                            {String(index + 1).padStart(2, '0')}
-                        </span>
+                <h2>
+                    There is, in fact,
+                    <br />
+                    life outside AI.
+                </h2>
+            </div>
 
-                        <p>{interest}</p>
-                    </div>
+            <div class="outside__grid">
+                {outside.map((item) => (
+                    <article class="outside__item">
+                        <div class="outside__top">
+                            <span>{item.number}</span>
+                            <span>↘</span>
+                        </div>
+
+                        <div>
+                            <h3>{item.title}</h3>
+                            <p>{item.note}</p>
+                        </div>
+                    </article>
                 ))}
             </div>
         </section>
 
-        <section class="closing">
-            <p>
-                I don't really see these as separate worlds.
-            </p>
+        <section class="travel">
+            <div class="travel__meta">
+                <div class="section-label">places</div>
+                <span>more of the map to uncover</span>
+            </div>
 
-            <h2>
-                I like learning how things work,
-                building things that didn't exist before,
-                and being around people who are curious enough
-                to do the same.
-            </h2>
+            <div class="travel__content">
+                <h2>
+                    I like seeing how big
+                    <span>the world actually is.</span>
+                </h2>
+
+                <div class="travel__bottom">
+                    <p>
+                        Conferences, competitions, programs, and curiosity
+                        have already taken me to places I probably wouldn't
+                        have seen otherwise.
+                    </p>
+
+                    <p class="travel__future">
+                        map coming later ↗
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="closing">
+            <div class="closing__meta">
+                <span>a phrase I keep coming back to</span>
+                <span>πάντα ῥεῖ</span>
+            </div>
+
+            <h2>Panta Rei.</h2>
+
+            <div class="closing__bottom">
+                <p>Everything flows.</p>
+
+                <p>
+                    Interests change. Plans change. People change.
+                    That's kind of the point.
+                </p>
+            </div>
         </section>
     </main>
 </Layout>
@@ -150,9 +203,12 @@ const currently = [
         line-height: 1.6;
     }
 
+    /* INTRO */
+
     .intro,
     .currently,
-    .interests {
+    .outside,
+    .travel {
         padding: 100px 0;
         border-bottom: 1px solid #282828;
     }
@@ -165,11 +221,11 @@ const currently = [
     }
 
     .intro__lead {
+        max-width: 680px;
         margin: 0;
-        max-width: 650px;
-        font-size: clamp(2rem, 4.5vw, 4rem);
-        line-height: 1.08;
-        letter-spacing: -0.05em;
+        font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+        line-height: 1.06;
+        letter-spacing: -0.055em;
     }
 
     .intro__text {
@@ -179,9 +235,10 @@ const currently = [
     .intro__text p {
         margin: 0 0 24px;
         color: #999;
-        font-size: 1rem;
         line-height: 1.75;
     }
+
+    /* CURRENTLY */
 
     .currently__grid {
         display: grid;
@@ -194,6 +251,9 @@ const currently = [
     .currently__item {
         min-height: 180px;
         padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         border-right: 1px solid #282828;
         border-bottom: 1px solid #282828;
     }
@@ -205,55 +265,167 @@ const currently = [
     }
 
     .currently__item p {
-        margin: 70px 0 0;
         max-width: 280px;
+        margin: 56px 0 0;
         font-size: 1.1rem;
         line-height: 1.4;
     }
 
-    .interests__list {
-        margin-top: 48px;
-        border-top: 1px solid #282828;
-    }
+    /* OUTSIDE */
 
-    .interest {
+    .outside__heading {
         display: grid;
-        grid-template-columns: 100px 1fr;
-        align-items: center;
-        padding: 24px 0;
-        border-bottom: 1px solid #282828;
+        grid-template-columns: 1fr 3fr;
+        gap: 48px;
+        margin-bottom: 64px;
     }
 
-    .interest span {
-        color: #555;
+    .outside__heading h2 {
+        margin: 0;
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+        font-weight: 500;
+    }
+
+    .outside__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-top: 1px solid #282828;
+        border-left: 1px solid #282828;
+    }
+
+    .outside__item {
+        min-height: 280px;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid #282828;
+        border-bottom: 1px solid #282828;
+        transition: background-color 180ms ease;
+    }
+
+    .outside__item:hover {
+        background: #111;
+    }
+
+    .outside__top {
+        display: flex;
+        justify-content: space-between;
+        color: #666;
         font-size: 0.75rem;
     }
 
-    .interest p {
+    .outside__item h3 {
         margin: 0;
-        font-size: clamp(1.4rem, 3vw, 2.4rem);
-        letter-spacing: -0.03em;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 500;
+        letter-spacing: -0.05em;
     }
+
+    .outside__item p {
+        margin: 12px 0 0;
+        color: #777;
+        font-size: 0.85rem;
+    }
+
+    /* TRAVEL */
+
+    .travel__meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+        color: #666;
+        font-size: 0.8rem;
+    }
+
+    .travel__content {
+        margin-top: 72px;
+    }
+
+    .travel h2 {
+        max-width: 1000px;
+        margin: 0;
+        font-size: clamp(3rem, 7vw, 7rem);
+        line-height: 0.93;
+        letter-spacing: -0.065em;
+        font-weight: 500;
+    }
+
+    .travel h2 span {
+        display: block;
+        color: #555;
+    }
+
+    .travel__bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        margin-top: 64px;
+    }
+
+    .travel__bottom > p:first-child {
+        max-width: 500px;
+        margin: 0;
+        color: #999;
+        line-height: 1.7;
+    }
+
+    .travel__future {
+        justify-self: end;
+        align-self: end;
+        margin: 0;
+        color: #666;
+        font-size: 0.8rem;
+    }
+
+    /* CLOSING */
 
     .closing {
         padding: 140px 0 160px;
     }
 
-    .closing > p {
-        margin: 0 0 32px;
-        color: #777;
-        font-size: 0.8rem;
-        letter-spacing: 0.1em;
+    .closing__meta {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #282828;
+        color: #666;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
         text-transform: lowercase;
     }
 
     .closing h2 {
-        max-width: 1000px;
-        margin: 0;
-        font-size: clamp(2.5rem, 6vw, 5.5rem);
-        line-height: 1;
-        letter-spacing: -0.055em;
+        margin: 72px 0;
+        font-size: clamp(5rem, 16vw, 14rem);
+        line-height: 0.75;
+        letter-spacing: -0.08em;
         font-weight: 500;
+    }
+
+    .closing__bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: end;
+    }
+
+    .closing__bottom p {
+        margin: 0;
+    }
+
+    .closing__bottom > p:first-child {
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        letter-spacing: -0.03em;
+    }
+
+    .closing__bottom > p:last-child {
+        max-width: 420px;
+        justify-self: end;
+        color: #888;
+        line-height: 1.7;
     }
 
     @media (max-width: 700px) {
@@ -264,7 +436,8 @@ const currently = [
 
         .intro,
         .currently,
-        .interests {
+        .outside,
+        .travel {
             padding: 72px 0;
         }
 
@@ -273,7 +446,8 @@ const currently = [
             gap: 48px;
         }
 
-        .currently__grid {
+        .currently__grid,
+        .outside__grid {
             grid-template-columns: 1fr;
         }
 
@@ -281,16 +455,52 @@ const currently = [
             min-height: 140px;
         }
 
-        .currently__item p {
+        .outside__heading {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .outside__item {
+            min-height: 220px;
+        }
+
+        .travel__meta {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .travel__content {
             margin-top: 48px;
         }
 
-        .interest {
-            grid-template-columns: 60px 1fr;
+        .travel__bottom {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .travel__future {
+            justify-self: start;
         }
 
         .closing {
             padding: 100px 0 120px;
+        }
+
+        .closing__meta {
+            gap: 24px;
+        }
+
+        .closing h2 {
+            margin: 64px 0;
+        }
+
+        .closing__bottom {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .closing__bottom > p:last-child {
+            justify-self: start;
         }
     }
 </style>

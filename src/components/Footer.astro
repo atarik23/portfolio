@@ -1,0 +1,113 @@
+<footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__location">
+            <span>based in</span>
+            <p>Sarajevo, Bosnia & Herzegovina</p>
+        </div>
+
+        <nav class="footer__links" aria-label="Social links">
+            <a
+                href="YOUR_GITHUB_URL"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub ↗
+            </a>
+
+            <a
+                href="YOUR_LINKEDIN_URL"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                LinkedIn ↗
+            </a>
+
+            <a href="/cv.pdf" target="_blank">
+                CV ↗
+            </a>
+
+            <a href="mailto:YOUR_EMAIL">
+                Email ↗
+            </a>
+        </nav>
+
+        <p class="footer__copyright">
+            © 2026 Tarik Agić
+        </p>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        margin-top: 80px;
+        border-top: 1px solid #282828;
+    }
+
+    .footer__inner {
+        width: min(1200px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 64px 0 40px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 80px;
+    }
+
+    .footer__location span {
+        display: block;
+        margin-bottom: 12px;
+        color: #777;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: lowercase;
+    }
+
+    .footer__location p {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .footer__links {
+        display: flex;
+        gap: 28px;
+        align-items: flex-start;
+    }
+
+    .footer__links a {
+        color: #a3a3a3;
+        transition: color 160ms ease;
+    }
+
+    .footer__links a:hover {
+        color: #ffffff;
+    }
+
+    .footer__copyright {
+        grid-column: 1 / -1;
+        margin: 80px 0 0;
+        color: #666;
+        font-size: 0.8rem;
+    }
+
+    @media (max-width: 700px) {
+        .footer {
+            margin-top: 40px;
+        }
+
+        .footer__inner {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            padding-top: 48px;
+        }
+
+        .footer__links {
+            display: grid;
+            grid-template-columns: repeat(2, max-content);
+            gap: 16px 32px;
+        }
+
+        .footer__copyright {
+            grid-column: auto;
+            margin-top: 40px;
+        }
+    }
+</style>
