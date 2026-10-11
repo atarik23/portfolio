@@ -1,0 +1,470 @@
+
+---
+import Layout from '../../layouts/Layout.astro';
+
+const assets = '/images/digital-arithmetic-system';
+---
+
+<Layout title="8-bit Digital Arithmetic System — Tarik Agić">
+  <main class="article">
+    <a class="back" href="/work">← All projects</a>
+
+    <header class="article-header">
+      <p class="eyebrow">
+        Digital Logic <span>·</span> Academic Project <span>·</span> 2025
+      </p>
+
+      <h1>8-bit Digital Arithmetic System</h1>
+
+      <p class="dek">
+        A breadboard-built arithmetic system with two operand registers,
+        selectable clock sources, an 8-bit ripple-carry adder, and an
+        extended finite-state machine for formal verification.
+      </p>
+
+      <div class="byline">
+        <span>Tarik Agić &amp; Salih Seferović</span>
+        <span class="separator" aria-hidden="true">·</span>
+        <span>Team project</span>
+      </div>
+    </header>
+
+    <article class="body">
+      <section aria-labelledby="overview">
+        <h2 id="overview">Overview</h2>
+
+        <p>
+          Designed and implemented as a physical digital-logic project,
+          this system stores two unsigned 8-bit operands, A and B, in
+          separate registers. Either operand can be incremented using a
+          shared arithmetic circuit, while a separate combinational
+          ripple-carry adder continuously computes their sum.
+        </p>
+
+        <p>
+          The project combines discrete logic hardware with a formal
+          description of its sequential behavior. It addresses both
+          the arithmetic correctness of the circuit and the control
+          rules that determine which register changes on a clock event.
+        </p>
+      </section>
+
+      <section aria-labelledby="hardware" class="clearfix">
+        <h2 id="hardware">Hardware Implementation</h2>
+
+        <figure class="article-image article-image--right">
+          <a
+            href={`${assets}/prototype.jpg`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open photograph of the physical prototype"
+          >
+            <img
+              src={`${assets}/prototype.jpg`}
+              alt="Top-down photograph of the assembled 8-bit digital arithmetic system on multiple breadboards"
+              loading="lazy"
+            />
+          </a>
+
+          <figcaption>
+            <strong>Figure 1.</strong> Physical breadboard implementation.
+            Click to enlarge.
+          </figcaption>
+        </figure>
+
+        <p>
+          The prototype was assembled across six solderless breadboards
+          using 74HC-series logic ICs. Two SN74HC273 registers hold the
+          operands, and SN74HC157 multiplexers select the operand passed
+          through a shared incrementer. A register-selection switch
+          routes valid clock events to only the chosen register.
+        </p>
+
+        <p>
+          Users can select a debounced push-button clock or an adjustable
+          NE555 oscillator. The output stage uses LEDs to indicate the
+          sum and carry; shift registers also support serial transfer
+          to an Arduino-driven LCD for decimal display.
+        </p>
+
+        <figure class="architecture-figure">
+          <a
+            href={`${assets}/architecture.png`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open system architecture diagram in full resolution"
+          >
+            <img
+              src={`${assets}/architecture.png`}
+              alt="System architecture showing clock sources, register selection, shared incrementer, ripple-carry adder, and output stage"
+              loading="lazy"
+            />
+          </a>
+
+          <figcaption>
+            <strong>Figure 2.</strong> System architecture: control signals,
+            registers, arithmetic paths, and output stage.
+            Click to enlarge.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="verification">
+        <h2 id="verification">Formal Modeling and Verification</h2>
+
+        <p>
+          The sequential behavior was specified as an
+          <strong>extended finite-state machine (EFSM)</strong>.
+          Each state records the selected register, selected clock
+          source, and both 8-bit operand values. An executable reference
+          model was used to examine arithmetic correctness,
+          register-update exclusivity, clock-source isolation,
+          stability between valid events, and transition totality.
+        </p>
+
+        <div class="table-scroll">
+          <table>
+            <caption>Scope of the exhaustive formal-model checks</caption>
+
+            <thead>
+              <tr>
+                <th scope="col">Measure</th>
+                <th scope="col">Result</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>EFSM states</td>
+                <td class="numeric">262,144</td>
+              </tr>
+              <tr>
+                <td>Modeled event types</td>
+                <td class="numeric">6</td>
+              </tr>
+              <tr>
+                <td>State-event transitions evaluated</td>
+                <td class="numeric">1,572,864</td>
+              </tr>
+              <tr>
+                <td>Assertion violations</td>
+                <td class="numeric">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          The exhaustive checks establish these properties for the
+          <em>formal model</em>; they do not constitute exhaustive
+          electrical verification of the physical prototype.
+          Physical tests were used separately to assess whether the
+          assembled circuit behaved consistently with the model.
+        </p>
+      </section>
+    </article>
+
+    <footer class="article-footer">
+      <span>
+        Digital Logic · Sequential Circuits · EFSM · Formal Verification
+      </span>
+
+      <a href="/work">← Back to work</a>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .article {
+    width: min(820px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 56px 0 96px;
+  }
+
+  .back {
+    display: inline-flex;
+    color: #9d9b97;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .back:hover,
+  .article a:hover {
+    color: #f26a2e;
+  }
+
+  .article-header {
+    padding: 56px 0 38px;
+    border-bottom: 1px solid #34312e;
+  }
+
+  .eyebrow {
+    margin: 0 0 19px;
+    color: #b3aaa1;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .eyebrow span {
+    margin: 0 7px;
+    color: #6f6a64;
+  }
+
+  h1 {
+    max-width: 790px;
+    margin: 0 0 21px;
+    font-size: clamp(2.2rem, 4.2vw, 3.45rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.047em;
+    text-wrap: balance;
+  }
+
+  .dek {
+    max-width: 650px;
+    margin: 0;
+    color: #bcb7b0;
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 23px;
+    color: #a5a09a;
+    font-size: 0.8rem;
+  }
+
+  .separator {
+    color: #6c6863;
+  }
+
+  .body {
+    padding-top: 5px;
+  }
+
+  .body section {
+    margin-top: 34px;
+  }
+
+  h2 {
+    margin: 0 0 14px;
+    color: #f1eee8;
+    font-size: 1.34rem;
+    font-weight: 550;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+  }
+
+  .body p {
+    margin: 0 0 14px;
+    color: #c2beb8;
+    font-size: 0.94rem;
+    line-height: 1.8;
+  }
+
+  .body strong {
+    color: #e9e5df;
+    font-weight: 600;
+  }
+
+  .body a {
+    color: #e9e5df;
+    text-underline-offset: 4px;
+  }
+
+  /* Editorial image beside the text */
+
+  .article-image {
+    float: left;
+    width: 38%;
+    max-width: 300px;
+    margin: 5px 25px 16px 0;
+  }
+
+  .article-image--right {
+    float: right;
+    margin: 5px 0 16px 25px;
+  }
+
+  .article-image a,
+  .architecture-figure a {
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .article-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #38342f;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+
+  .article-image a:hover img,
+  .architecture-figure a:hover img {
+    border-color: #a49a8d;
+  }
+
+  figure {
+    margin: 0;
+    min-width: 0;
+  }
+
+  figcaption {
+    margin-top: 9px;
+    color: #aaa49d;
+    font-size: 0.76rem;
+    line-height: 1.55;
+  }
+
+  figcaption strong {
+    color: #e5dfd7;
+    font-weight: 500;
+  }
+
+  /* Architecture diagram */
+
+  .architecture-figure {
+    clear: both;
+    width: 100%;
+    max-width: 650px;
+    margin: 26px auto 8px;
+  }
+
+  .architecture-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: #e9e7e2;
+    border: 1px solid #38342f;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Results table */
+
+  .table-scroll {
+    overflow-x: auto;
+    margin: 22px 0 28px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+  }
+
+  caption {
+    padding: 0 0 12px;
+    color: #a39e97;
+    font-size: 0.78rem;
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: 12px 13px;
+    border-bottom: 1px solid #34312e;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  th {
+    color: #aaa49c;
+    font-weight: 500;
+    background: #171614;
+    border-top: 1px solid #34312e;
+  }
+
+  td {
+    color: #ddd8d1;
+  }
+
+  tbody tr:hover {
+    background: #171614;
+  }
+
+  .numeric {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+
+  /* Footer */
+
+  .article-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 45px;
+    padding-top: 22px;
+    border-top: 1px solid #34312e;
+    color: #99948d;
+    font-size: 0.8rem;
+  }
+
+  .article-footer a {
+    color: #ded8d0;
+    text-decoration: none;
+  }
+
+  /* Responsive layout */
+
+  @media (max-width: 650px) {
+    .article {
+      width: calc(100% - 36px);
+      padding-top: 35px;
+    }
+
+    .article-header {
+      padding: 38px 0 30px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 9vw, 2.6rem);
+    }
+
+    .body section {
+      margin-top: 30px;
+    }
+
+    .article-image,
+    .article-image--right {
+      float: none;
+      width: 100%;
+      max-width: 340px;
+      margin: 20px auto 22px;
+    }
+
+    .architecture-figure {
+      width: 100%;
+      margin: 22px auto;
+    }
+
+    th,
+    td {
+      padding: 10px 9px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .back,
+    .article-image img,
+    .architecture-figure img {
+      transition: none;
+    }
+  }
+</style>

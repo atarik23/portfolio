@@ -1,41 +1,34 @@
-<nav class="navbar">
-    <a class="navbar__name" href="/">Tarik Agić</a>
-
+---
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  { href: '/about', label: 'about' },
+  { href: '/work', label: 'work' },
+  { href: '/journey', label: 'journey' },
+  { href: '/elsewhere', label: 'elsewhere' },
+];
+---
+<header class="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="navbar__name" href="/" aria-label="Tarik Agić, home">ta<span class="navbar__dot">.</span></a>
     <div class="navbar__links">
-        <a href="/about">about</a>
-        <a href="/work">work</a>
-        <a href="/journey">journey</a>
-        <a href="/elsewhere">elsewhere</a>
+      {links.map((link) => (
+        <a href={link.href} aria-current={pathname === link.href ? 'page' : undefined}>{link.label}</a>
+      ))}
     </div>
-</nav>
+  </nav>
+</header>
 
 <style>
-    .navbar {
-        width: min(1200px, calc(100% - 48px));
-        height: 88px;
-        margin: 0 auto;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .navbar__name {
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-
-    .navbar__links {
-        display: flex;
-        gap: 32px;
-    }
-
-    .navbar__links a {
-        color: #a3a3a3;
-        transition: color 150ms ease;
-    }
-
-    .navbar__links a:hover {
-        color: #ffffff;
-    }
+  .site-header { border-bottom: 1px solid #242320; }
+  .navbar { width: min(1200px, calc(100% - 48px)); min-height: 82px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .navbar__name { font-size: 1.45rem; font-weight: 700; letter-spacing: -.09em; line-height: 1; }
+  .navbar__dot { color: var(--accent); }
+  .navbar__links { display: flex; align-items: center; gap: clamp(14px, 3vw, 38px); }
+  .navbar__links a { color: var(--muted); font-size: .86rem; transition: color 180ms ease; }
+  .navbar__links a:hover, .navbar__links a[aria-current="page"] { color: var(--text); }
+  @media (max-width: 560px) {
+    .navbar { min-height: 72px; flex-wrap: wrap; padding: 17px 0; gap: 16px; }
+    .navbar__links { width: 100%; justify-content: space-between; gap: 10px; }
+    .navbar__links a { font-size: .78rem; }
+  }
 </style>

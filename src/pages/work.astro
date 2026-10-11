@@ -22,64 +22,66 @@ const experience = [
 
 const projects = [
     {
-        year: '2026',
-        title: 'BosančicaAI',
-        type: 'Research · OCR / HTR',
+        year: '2025–2026',
+        title: 'Bosančica AI',
+        type: 'Research · Computer Vision / HTR',
         description:
-            'Collaborative research on OCR and handwriting recognition for historical Bosančica documents, combining document segmentation and modern recognition approaches.',
+            'A research pipeline for recognizing historical Bosančica manuscripts, comparing Kraken, TrOCR, and an adapted HTR-VT model.',
         status: 'collaborative research',
-        href: 'https://github.com/ehadziabdic/BosancicaAI',
-        linkLabel: 'GitHub ↗',
+        href: 'https://bosancica.ai',
+        linkLabel: 'Project website ↗',
+        detailsHref: '/work/bosancica-ai',
     },
     {
         year: '2026',
         title: 'Uchko',
-        type: 'Machine Learning · Full-stack',
+        type: 'Artificial Intelligence · Adaptive Learning',
         description:
-            'An adaptive learning platform exploring student-success prediction, knowledge tracing, and personalized learning.',
-        status: 'work in progress',
-        href: null,
-        linkLabel: null,
+            'An adaptive mathematics learning platform integrating XGBoost, Bayesian Knowledge Tracing, and a Django application for personalized practice and student progress tracking.',
+        status: 'team project',
+        detailsHref: '/work/uchko',
     },
     {
         year: '2026',
         title: 'Pizzo',
         type: 'Artificial Intelligence · C++',
         description:
-            'An artificial intelligence project implemented in C++ using the natID framework.',
-        status: 'AI system',
-        href: null,
-        linkLabel: null,
+            'A gamified route-planning application combining the Chinese Postman Problem, animated neighborhood traversal, and a Blackjack mini-game with an expected-value decision advisor.',
+        status: 'academic project',
+        href: 'https://github.com/atarik23/ProjAI_Pizzo_Agic',
+        linkLabel: 'GitHub ↗',
+        detailsHref: '/work/pizzo',
     },
     {
-        year: '2026',
-        title: '8-bit Adder',
-        type: 'Formal Models · Digital Logic',
+        year: '2025',
+        title: '8-bit Digital Arithmetic System',
+        type: 'Digital Logic · Formal Verification',
         description:
-            'An 8-bit digital adder exploring formal models, digital logic, and circuit design.',
-        status: 'digital logic',
-        href: null,
-        linkLabel: null,
+            'Designed and built an 8-bit arithmetic system using discrete logic components, with dual operand registers, selectable clock sources, and exhaustive EFSM verification.',
+        status: 'team project',
+        detailsHref: '/work/8-bit-digital-arithmetic-system',
     },
     {
         year: '2026',
         title: 'Mean-Variance Portfolio Optimizer',
         type: 'C++ · Numerical Optimization',
         description:
-            'Long-only mean-variance portfolio optimization using an active-set QP solver with dense and sparse matrix backends.',
-        status: 'numerical optimization',
-        href: null,
-        linkLabel: null,
+            'A C++ portfolio explorer that formulates long-only mean-variance allocation as a convex quadratic program, solves it with an active-set method, and compares natID dense and sparse KKT backends.',
+        status: 'academic project',
+        href: 'https://github.com/atarik23/ProjNO_PortOpt_Agic',
+        linkLabel: 'GitHub ↗',
+        detailsHref: '/work/mean-variance-portfolio-optimizer',
     },
     {
         year: '2026',
-        title: 'Variational Autoencoder Experiments',
-        type: 'Machine Learning · VAE',
+        title: 'Variational Autoencoders for Handwritten Digit Generation',
+        type: 'Machine Learning · Generative Models',
         description:
-            'Experiments on MNIST covering reconstruction, generation, latent-space visualization, and interpolation.',
-        status: 'machine learning',
-        href: null,
-        linkLabel: null,
+            'Implemented and compared four autoencoder-based models for MNIST digit reconstruction and generation, investigating reconstruction accuracy, latent-space dimensionality, interpolation, and convolutional architectures.',
+        status: 'academic project',
+        href: 'https://github.com/atarik23/vae-mnist-digit-generation',
+        linkLabel: 'GitHub ↗',
+        detailsHref: '/work/vae-mnist-digit-generation',
     },
 ];
 ---
@@ -148,7 +150,15 @@ const projects = [
                                 {project.type}
                             </p>
 
-                            <h2>{project.title}</h2>
+                            <h2>
+                                {project.detailsHref ? (
+                                    <a href={project.detailsHref} class="project__title-link">
+                                        {project.title} <span aria-hidden="true">↗</span>
+                                    </a>
+                                ) : (
+                                    project.title
+                                )}
+                            </h2>
 
                             <p class="project__description">
                                 {project.description}
@@ -162,6 +172,12 @@ const projects = [
                                     rel="noopener noreferrer"
                                 >
                                     {project.linkLabel}
+                                </a>
+                            )}
+
+                            {project.detailsHref && (
+                                <a class="project__link project__details-link" href={project.detailsHref}>
+                                    View project details →
                                 </a>
                             )}
                         </div>
@@ -357,6 +373,34 @@ const projects = [
     .project__link:hover {
         color: #fff;
         transform: translateX(4px);
+    }
+
+    .project__title-link {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .project__title-link span {
+        display: inline-block;
+        color: #777;
+        font-size: 0.55em;
+        vertical-align: middle;
+        transition: transform 180ms ease, color 180ms ease;
+    }
+
+    .project__title-link:hover span {
+        color: #f1eee8;
+        transform: translate(3px, -3px);
+    }
+
+    .project__details-link {
+        margin-left: 24px;
+        color: #f1eee8;
+    }
+
+    .project__title-link:focus-visible {
+        outline: 2px solid #f26a2e;
+        outline-offset: 5px;
     }
 
     @media (max-width: 700px) {

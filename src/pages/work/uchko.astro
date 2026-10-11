@@ -1,0 +1,212 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const assets = '/images/uchko';
+---
+
+<Layout title="Uchko — Tarik Agić">
+  <main class="article">
+    <a class="back" href="/work">← All projects</a>
+
+    <header class="article-header">
+      <p class="eyebrow">Artificial Intelligence <span>·</span> Academic Project <span>·</span> 2026</p>
+      <h1>Uchko</h1>
+      <p class="dek">An adaptive mathematics learning platform combining predictive modeling, knowledge tracing, and personalized problem selection.</p>
+      <div class="byline">
+        <span>Tarik Agić &amp; Azra Kurić</span>
+        <span class="separator" aria-hidden="true">·</span>
+        <span>Team project</span>
+      </div>
+    </header>
+
+    <article class="body">
+      <section aria-labelledby="overview" class="clearfix">
+        <h2 id="overview">Overview</h2>
+        <figure class="editorial-image">
+          <a href={`${assets}/practice.png`} target="_blank" rel="noopener noreferrer" aria-label="Open Uchko student practice screenshot">
+            <img src={`${assets}/practice.png`} alt="Uchko student mathematics practice interface" loading="lazy" />
+          </a>
+          <figcaption><strong>Figure 1.</strong> Student practice interface. Click to enlarge.</figcaption>
+        </figure>
+        <p>Uchko is a Django web application designed to adapt middle-school mathematics practice to each student's prior performance. Instead of serving the same sequence of problems to everyone, the platform estimates the likelihood of an independently successful response and tracks mastery of individual curriculum skills.</p>
+        <p>The project combines an experimentally evaluated student-success predictor with a persistent learning workflow: student and professor accounts, structured course content, learning sessions, per-skill progress, and a professor-facing overview of student performance.</p>
+      </section>
+
+      <section aria-labelledby="approach">
+        <h2 id="approach">Adaptive learning approach</h2>
+        <p>The implemented hybrid uses <strong>XGBoost</strong> to estimate the probability of success on a candidate exercise and <strong>Bayesian Knowledge Tracing (BKT)</strong> to maintain an interpretable mastery estimate for each skill. Mastery updates are based on independent attempts, distinguishing an unaided correct answer from one reached with hints or revealed solutions.</p>
+        <div class="workflow"><strong>Adaptation loop:</strong> Previous attempts → success prediction and skill mastery → choose a weak skill and appropriately challenging exercise → record response → update learner state.</div>
+        <p>The selection policy favors problems near a target predicted success probability of <strong>0.65</strong>, while taking recent practice and answer-format support into account. This is a transparent design heuristic, not a demonstrated optimum for learning outcomes.</p>
+      </section>
+
+      <section aria-labelledby="evaluation">
+        <h2 id="evaluation">Model development and evaluation</h2>
+        <p>The offline study used interaction records from the FoundationalASSIST dataset in a controlled research environment. After preprocessing and metadata joins, the modeling set contained approximately <strong>1.69 million interactions from 5,000 learners</strong>. Learners were separated across training, validation, and test partitions to reduce identity leakage.</p>
+        <p>A controlled experiment compared a history-only baseline, BKT, a recurrent Deep Knowledge Tracing (DKT) model, and XGBoost. For the directly matched next-response test cases, the following results were reported:</p>
+        <div class="table-scroll">
+          <table>
+            <caption>Held-out test results on matched next-response cases</caption>
+            <thead><tr><th scope="col">Model</th><th scope="col">ROC AUC</th><th scope="col">Log loss</th></tr></thead>
+            <tbody>
+              <tr><td>History baseline</td><td class="numeric">0.6932</td><td class="numeric">0.6073</td></tr>
+              <tr><td>Deep Knowledge Tracing</td><td class="numeric">0.7620</td><td class="numeric">0.5542</td></tr>
+              <tr><td>XGBoost</td><td class="numeric">0.8125</td><td class="numeric">0.5058</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>On this dataset and evaluation setup, XGBoost outperformed the tested DKT configuration. BKT was retained for its interpretable per-skill mastery updates rather than its standalone prediction performance. These offline metrics measure next-response prediction, <em>not</em> improved learning outcomes.</p>
+      </section>
+
+      <section aria-labelledby="platform" class="clearfix">
+        <h2 id="platform">From models to a working platform</h2>
+        <figure class="editorial-image">
+          <a href={`${assets}/professor.png`} target="_blank" rel="noopener noreferrer" aria-label="Open Uchko professor dashboard screenshot">
+            <img src={`${assets}/professor.png`} alt="Uchko professor dashboard showing learning progress" loading="lazy" />
+          </a>
+          <figcaption><strong>Figure 2.</strong> Professor-facing interface. Click to enlarge.</figcaption>
+        </figure>
+        <p>The application connects model inference to actual course interactions. Students can work through numerical and single-choice mathematics exercises, explore curriculum skills, and review their progress. Professors can manage course enrollment and inspect student progress through a dedicated interface.</p>
+        <p>The implementation uses <strong>Python, Django, XGBoost, BKT, and relational data models</strong>. Imported problem content is sanitized before display, and interaction histories remain persistent across learning sessions.</p>
+        <p class="micro-note">The portfolio presents aggregate research findings and application screens only. The source repository and underlying protected student interaction records are not linked or published here.</p>
+      </section>
+    </article>
+
+    <footer class="article-footer">
+      <span>Python · Django · XGBoost · Bayesian Knowledge Tracing · Adaptive Learning</span>
+      <a href="/work">← Back to work</a>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .article {
+    width: min(820px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 56px 0 96px;
+  }
+  .back {
+    display: inline-flex;
+    color: #9d9b97;
+    font-size: .85rem;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .back:hover, .article a:hover { color: #f26a2e; }
+  .article-header { padding: 56px 0 38px; border-bottom: 1px solid #34312e; }
+  .eyebrow {
+    margin: 0 0 19px;
+    color: #b3aaa1;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+  }
+  .eyebrow span { margin: 0 7px; color: #6f6a64; }
+  h1 {
+    max-width: 790px;
+    margin: 0 0 21px;
+    font-size: clamp(2.2rem, 4.2vw, 3.45rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -.047em;
+    text-wrap: balance;
+  }
+  .dek {
+    max-width: 650px;
+    margin: 0;
+    color: #bcb7b0;
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 23px;
+    color: #a5a09a;
+    font-size: .8rem;
+  }
+  .separator { color: #6c6863; }
+  .resources { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+  .resources a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #49443e;
+    border-radius: 4px;
+    color: #e6e1d9;
+    font-size: .83rem;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .resources a:hover { border-color: #f26a2e; }
+  .body { padding-top: 5px; }
+  .body section { margin-top: 34px; }
+  h2 {
+    margin: 0 0 14px;
+    color: #f1eee8;
+    font-size: 1.34rem;
+    font-weight: 550;
+    line-height: 1.3;
+    letter-spacing: -.025em;
+  }
+  .body p {
+    max-width: 760px;
+    margin: 0 0 14px;
+    color: #c2beb8;
+    font-size: .94rem;
+    line-height: 1.8;
+  }
+  .body strong { color: #e9e5df; font-weight: 600; }
+  .body a { color: #e9e5df; text-underline-offset: 4px; }
+  .table-scroll { overflow-x: auto; margin: 22px 0 28px; }
+  table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+  caption { padding: 0 0 12px; color: #a39e97; font-size: .78rem; text-align: left; }
+  th, td { padding: 12px 13px; border-bottom: 1px solid #34312e; text-align: left; white-space: nowrap; }
+  th { color: #aaa49c; font-weight: 500; background: #171614; border-top: 1px solid #34312e; }
+  td { color: #ddd8d1; }
+  tbody tr:hover { background: #171614; }
+  .numeric { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .figures { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 23px 0; }
+  .editorial-image { float: right; width: 42%; margin: 3px 0 17px 23px; }
+  .editorial-image img { display: block; width: 100%; height: auto; border: 1px solid #38342f; border-radius: 4px; }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .editorial-image a, .figures a { display: block; cursor: zoom-in; }
+  .editorial-image a:hover img, .figures a:hover img { border-color: #9d9389; }
+  .workflow { margin: 17px 0 19px; padding: 14px 18px; border-left: 2px solid #847769; background: #171614; color: #d0c9c0; font-size: .83rem; line-height: 1.9; }
+  .workflow strong { color: #f1eee8; }
+  .micro-note { font-size: .8rem !important; color: #9b948e !important; }
+  figure { margin: 0; min-width: 0; }
+  .figures img {
+    display: block;
+    width: 100%;
+    height: 235px;
+    object-fit: contain;
+    background: #171614;
+    border: 1px solid #38342f;
+    border-radius: 4px;
+  }
+  figcaption { margin-top: 10px; color: #aaa49d; font-size: .79rem; line-height: 1.6; }
+  figcaption strong { color: #e5dfd7; font-weight: 500; }
+  .article-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 45px;
+    padding-top: 22px;
+    border-top: 1px solid #34312e;
+    color: #99948d;
+    font-size: .8rem;
+  }
+  .article-footer a { color: #ded8d0; text-decoration: none; }
+  @media (max-width: 600px) {
+    .article { width: min(100% - 36px, 820px); padding-top: 35px; }
+    .article-header { padding: 38px 0 30px; }
+    h1 { font-size: clamp(2rem, 9vw, 2.6rem); }
+    .body section { margin-top: 30px; }
+    .figures { grid-template-columns: 1fr; }
+    .editorial-image { float: none; width: 100%; max-width: 450px; margin: 20px auto 22px; }
+    .figures img { height: auto; max-height: 320px; }
+    th, td { padding: 10px 9px; }
+  }
+</style>

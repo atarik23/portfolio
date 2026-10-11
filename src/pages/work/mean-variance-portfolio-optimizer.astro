@@ -1,0 +1,201 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const repo = 'https://github.com/atarik23/ProjNO_PortOpt_Agic';
+const figures = 'https://raw.githubusercontent.com/atarik23/ProjNO_PortOpt_Agic/main/Docs/Images';
+const metrics = [
+  { label: 'GMV expected return', value: '0.726733%' },
+  { label: 'GMV risk', value: '0.134594%' },
+  { label: 'Frontier portfolios', value: '25' },
+  { label: 'Dense/sparse max. weight difference', value: '5.551 × 10⁻¹⁷' },
+];
+---
+
+<Layout title="Mean-Variance Portfolio Optimizer — Tarik Agić">
+  <main class="article">
+    <a class="back" href="/work">← All projects</a>
+    <header class="article-header">
+      <p class="eyebrow">Numerical Optimization <span>·</span> Academic Project <span>·</span> 2026</p>
+      <h1>Mean-Variance Portfolio Optimizer</h1>
+      <p class="dek">A C++ portfolio explorer implementing active-set quadratic programming with interchangeable dense and sparse linear-system backends.</p>
+      <div class="byline">
+        <span>Tarik Agić</span><span class="separator" aria-hidden="true">·</span><span>Individual project</span>
+      </div>
+      <nav class="resources" aria-label="Project resources">
+        <a href={repo} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href={`${repo}/blob/main/Docs/ProjNO_PortOpt_Agic.pdf`} target="_blank" rel="noopener noreferrer">Technical report ↗</a>
+        <a href={`${repo}/blob/main/Implementation/README.md`} target="_blank" rel="noopener noreferrer">Documentation ↗</a>
+      </nav>
+    </header>
+
+    <article class="body">
+      <section aria-labelledby="overview">
+        <h2 id="overview">Overview</h2>
+        <p>Developed as an individual project for the <em>Numerical Optimization</em> course, this C++ application constructs long-only portfolios that minimize variance for a selected expected return. It estimates asset-return statistics from validated CSV data and presents the resulting allocations through a native graphical interface built with the professor-provided natID framework.</p>
+        <p>The application includes an efficient-frontier explorer, allocation and weight-path visualizations, backend comparison, CSV export, and reproducible synthetic and historical ETF examples.</p>
+      </section>
+
+      <section aria-labelledby="implementation">
+        <h2 id="implementation">Implementation</h2>
+        <p>The optimization problem is formulated as a convex quadratic program with full-investment, target-return, and non-negativity constraints:</p>
+        <div class="equation" role="img" aria-label="Minimize one half w transpose Sigma w, subject to mu transpose w equals r, sum of weights equals one, and weights are nonnegative.">min ½ wᵀΣw &nbsp; subject to &nbsp; μᵀw = r, &nbsp; 1ᵀw = 1, &nbsp; w ≥ 0</div>
+        <p>I implemented a <strong>feasible primal active-set solver</strong> that solves Karush–Kuhn–Tucker (KKT) systems, updates active zero-weight bounds, and verifies feasibility after convergence. The same optimization algorithm uses either the natID <code>dense::DblMatrix</code> or <code>sparse::DblSolver</code> backend.</p>
+        <p>The interface allows target-return selection, displays the efficient frontier and portfolio weights, and compares solutions across backends. The natID matrix libraries and GUI framework were externally provided; the project-specific solver, integration, interface, tests, and report were my work.</p>
+      </section>
+
+      <section aria-labelledby="results">
+        <h2 id="results">Results</h2>
+        <p>On the bundled five-asset synthetic dataset, the application constructed 25 feasible efficient-frontier portfolios. Dense and sparse backends produced numerically matching allocations, and the automated verification suite passed, including correlated 20-asset test cases.</p>
+        <div class="table-scroll">
+          <table>
+            <caption>Selected results from the reproducible synthetic sample</caption>
+            <thead><tr><th scope="col">Metric</th><th scope="col">Result</th></tr></thead>
+            <tbody>
+              {metrics.map((metric) => <tr><td>{metric.label}</td><td class="numeric">{metric.value}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+        <div class="figures">
+          <figure>
+            <img src={`${figures}/efficient_frontier.png`} alt="Portfolio Explorer efficient-frontier visualization" loading="lazy" />
+            <figcaption><strong>Figure 1.</strong> Efficient frontier and selected portfolio in the graphical application.</figcaption>
+          </figure>
+          <figure>
+            <img src={`${figures}/portfolio_weights.png`} alt="Portfolio weight paths across target returns" loading="lazy" />
+            <figcaption><strong>Figure 2.</strong> Changes in asset allocation across target returns.</figcaption>
+          </figure>
+        </div>
+        <p>The project also includes a documented five-ETF historical sample for demonstration, not investment forecasting or out-of-sample performance evaluation. Additional interface screenshots and numerical checks are available in the <a href={`${repo}/tree/main/Docs/Images`} target="_blank" rel="noopener noreferrer">repository figures ↗</a> and the <a href={`${repo}/blob/main/Docs/ProjNO_PortOpt_Agic.pdf`} target="_blank" rel="noopener noreferrer">technical report ↗</a>.</p>
+      </section>
+    </article>
+
+    <footer class="article-footer">
+      <span>C++20 · natID SDK · natGUI · CMake · CTest</span>
+      <a href="/work">← Back to work</a>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .article {
+    width: min(820px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 56px 0 96px;
+  }
+  .back {
+    display: inline-flex;
+    color: #9d9b97;
+    font-size: .85rem;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .back:hover, .article a:hover { color: #f26a2e; }
+  .article-header { padding: 56px 0 38px; border-bottom: 1px solid #34312e; }
+  .eyebrow {
+    margin: 0 0 19px;
+    color: #b3aaa1;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+  }
+  .eyebrow span { margin: 0 7px; color: #6f6a64; }
+  h1 {
+    max-width: 790px;
+    margin: 0 0 21px;
+    font-size: clamp(2.2rem, 4.2vw, 3.45rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -.047em;
+    text-wrap: balance;
+  }
+  .dek {
+    max-width: 650px;
+    margin: 0;
+    color: #bcb7b0;
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 23px;
+    color: #a5a09a;
+    font-size: .8rem;
+  }
+  .separator { color: #6c6863; }
+  .resources { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+  .resources a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #49443e;
+    border-radius: 4px;
+    color: #e6e1d9;
+    font-size: .83rem;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .resources a:hover { border-color: #f26a2e; }
+  .body { padding-top: 5px; }
+  .body section { margin-top: 34px; }
+  h2 {
+    margin: 0 0 14px;
+    color: #f1eee8;
+    font-size: 1.34rem;
+    font-weight: 550;
+    line-height: 1.3;
+    letter-spacing: -.025em;
+  }
+  .body p {
+    max-width: 760px;
+    margin: 0 0 14px;
+    color: #c2beb8;
+    font-size: .94rem;
+    line-height: 1.8;
+  }
+  .body strong { color: #e9e5df; font-weight: 600; }
+  .body a { color: #e9e5df; text-underline-offset: 4px; }
+  .table-scroll { overflow-x: auto; margin: 22px 0 28px; }
+  table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+  caption { padding: 0 0 12px; color: #a39e97; font-size: .78rem; text-align: left; }
+  th, td { padding: 12px 13px; border-bottom: 1px solid #34312e; text-align: left; white-space: nowrap; }
+  th { color: #aaa49c; font-weight: 500; background: #171614; border-top: 1px solid #34312e; }
+  td { color: #ddd8d1; }
+  tbody tr:hover { background: #171614; }
+  .numeric { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .equation { margin: 18px 0; padding: 15px 18px; border-left: 2px solid #6b6258; background: #171614; color: #e9e5df; font-size: .95rem; overflow-x: auto; }\n  .figures { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 26px 0 26px; }
+  figure { margin: 0; min-width: 0; }
+  figure img {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background: #171614;
+    border: 1px solid #38342f;
+    border-radius: 4px;
+  }
+  figcaption { margin-top: 10px; color: #aaa49d; font-size: .79rem; line-height: 1.6; }
+  figcaption strong { color: #e5dfd7; font-weight: 500; }
+  .article-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 45px;
+    padding-top: 22px;
+    border-top: 1px solid #34312e;
+    color: #99948d;
+    font-size: .8rem;
+  }
+  .article-footer a { color: #ded8d0; text-decoration: none; }
+  @media (max-width: 600px) {
+    .article { width: min(100% - 36px, 820px); padding-top: 35px; }
+    .article-header { padding: 38px 0 30px; }
+    h1 { font-size: clamp(2rem, 9vw, 2.6rem); }
+    .body section { margin-top: 30px; }
+    .figures { grid-template-columns: 1fr; }
+    figure img { height: auto; max-height: 320px; }
+    th, td { padding: 10px 9px; }
+  }
+</style>

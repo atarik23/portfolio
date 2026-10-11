@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const repo = 'https://github.com/atarik23/ProjAI_Pizzo_Agic';
+const images = 'https://raw.githubusercontent.com/atarik23/ProjAI_Pizzo_Agic/main/Docs/Images';
+---
+
+<Layout title="Pizzo — Tarik Agić">
+  <main class="article">
+    <a class="back" href="/work">← All projects</a>
+
+    <header class="article-header">
+      <p class="eyebrow">Artificial Intelligence <span>·</span> Academic Project <span>·</span> 2026</p>
+      <h1>Pizzo</h1>
+      <p class="dek">A gamified route-planning application combining optimal street coverage with a Blackjack mini-game and an expected-value decision advisor.</p>
+      <div class="byline">
+        <span>Tarik Agić</span>
+        <span class="separator" aria-hidden="true">·</span>
+        <span>Individual project</span>
+      </div>
+      <nav class="resources" aria-label="Project resources">
+        <a href={repo} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href={`${repo}/blob/main/Docs/Pizzo_Report.pdf`} target="_blank" rel="noopener noreferrer">Technical report ↗</a>
+        <a href={`${repo}/blob/main/Docs/Pizzo_Presentation.pdf`} target="_blank" rel="noopener noreferrer">Presentation ↗</a>
+      </nav>
+    </header>
+
+    <article class="body">
+      <section aria-labelledby="overview" class="clearfix">
+        <h2 id="overview">Overview</h2>
+        <figure class="editorial-image">
+          <a href={`${images}/cpp.png`} target="_blank" rel="noopener noreferrer" aria-label="Open the Pizzo route-planning interface screenshot">
+            <img src={`${images}/cpp.png`} alt="Pizzo application showing a neighborhood graph and route-planning interface" loading="lazy"/>
+          </a>
+          <figcaption><strong>Figure 1.</strong> Route-planning interface. Click to enlarge.</figcaption>
+        </figure>
+        <p>In Pizzo, a fictional Italian mob boss plans a route through a neighborhood to collect payments along every street. The objective is to cover all streets and return to the starting point while minimizing travel cost. This playful premise gives a visual, interactive setting to the <strong>undirected Chinese Postman Problem</strong>.</p>
+        <p>Developed as an individual project for the <em>Artificial Intelligence</em> course at the Faculty of Electrical Engineering, University of Sarajevo, Pizzo combines a graph-optimization engine with a desktop GUI, animated traversal, and a second mode: a playable Blackjack game with an AI-style decision advisor. Both modes share the same in-game wallet.</p>
+      </section>
+
+      <section aria-labelledby="routes">
+        <h2 id="routes">Route optimization</h2>
+        <p>Each neighborhood is loaded from a weighted, undirected graph. Vertices represent intersections and edges represent streets. The application solves for the <strong>minimum-cost closed walk</strong> that traverses every street at least once, then animates the route from a user-selected starting node.</p>
+        <div class="workflow"><strong>Algorithm:</strong> Identify odd-degree vertices → Dijkstra shortest paths → exact minimum-weight perfect matching → duplicate matched paths → construct an Euler circuit with a Hierholzer-style traversal.</div>
+        <p>The exact matching implementation is suitable for the small bundled graphs rather than arbitrarily large networks. Three selectable neighborhoods—Little Italy, North Jersey, and Pine Barrens—illustrate different graph structures. The interface also exposes the original street cost, added traversal cost, optimal tour cost, and an adjustable animation speed.</p>
+      </section>
+
+      <section aria-labelledby="blackjack" class="clearfix">
+        <h2 id="blackjack">Blackjack and decision support</h2>
+        <figure class="editorial-image">
+          <a href={`${images}/blackjack.png`} target="_blank" rel="noopener noreferrer" aria-label="Open the Pizzo Blackjack interface screenshot">
+            <img src={`${images}/blackjack.png`} alt="Pizzo Blackjack mini-game interface with cards, betting controls and an expected-value advisor" loading="lazy"/>
+          </a>
+          <figcaption><strong>Figure 2.</strong> Blackjack mini-game. Click to enlarge.</figcaption>
+        </figure>
+        <p>The second game mode lets the player use their shared wallet to place Blackjack bets. The dealer follows a fixed rule of drawing until reaching 17; the player chooses between <em>Hit</em> and <em>Stand</em>.</p>
+        <p>The <strong>Consigliere</strong> advisor computes the expected value of both actions under an infinite-deck card model. It recursively evaluates possible draws and dealer outcomes, using memoization to avoid repeatedly solving the same decision states. The recommendation is based on the higher calculated expected value, not a trained machine-learning model.</p>
+      </section>
+
+      <section aria-labelledby="implementation">
+        <h2 id="implementation">Implementation</h2>
+        <p>The application was implemented in <strong>C++ using the natID SDK</strong>. Separate modules handle graph loading, shortest paths, matching, Euler tours, Blackjack game logic, and the decision advisor. The desktop interface uses natID canvases and resources for neighborhood visualization, cards, animation, and sound.</p>
+        <p>Neighborhoods are defined in editable text files; the graph display assigns vertex positions automatically. The main window and Blackjack window communicate through a shared wallet state, connecting the two otherwise distinct algorithms into one playable application.</p>
+        <p class="micro-note">The source code, build instructions, screenshots, and complete report are available in the project repository. The natID framework is an external dependency.</p>
+      </section>
+    </article>
+
+    <footer class="article-footer">
+      <span>C++ · Graph Algorithms · Chinese Postman Problem · Expectimax · natID</span>
+      <a href="/work">← Back to work</a>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .article {
+    width: min(820px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 56px 0 96px;
+  }
+  .back {
+    display: inline-flex;
+    color: #9d9b97;
+    font-size: .85rem;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .back:hover, .article a:hover { color: #f26a2e; }
+  .article-header { padding: 56px 0 38px; border-bottom: 1px solid #34312e; }
+  .eyebrow {
+    margin: 0 0 19px;
+    color: #b3aaa1;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+  }
+  .eyebrow span { margin: 0 7px; color: #6f6a64; }
+  h1 {
+    max-width: 790px;
+    margin: 0 0 21px;
+    font-size: clamp(2.2rem, 4.2vw, 3.45rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -.047em;
+    text-wrap: balance;
+  }
+  .dek {
+    max-width: 650px;
+    margin: 0;
+    color: #bcb7b0;
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 23px;
+    color: #a5a09a;
+    font-size: .8rem;
+  }
+  .separator { color: #6c6863; }
+  .resources { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+  .resources a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #49443e;
+    border-radius: 4px;
+    color: #e6e1d9;
+    font-size: .83rem;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .resources a:hover { border-color: #f26a2e; }
+  .body { padding-top: 5px; }
+  .body section { margin-top: 34px; }
+  h2 {
+    margin: 0 0 14px;
+    color: #f1eee8;
+    font-size: 1.34rem;
+    font-weight: 550;
+    line-height: 1.3;
+    letter-spacing: -.025em;
+  }
+  .body p {
+    max-width: 760px;
+    margin: 0 0 14px;
+    color: #c2beb8;
+    font-size: .94rem;
+    line-height: 1.8;
+  }
+  .body strong { color: #e9e5df; font-weight: 600; }
+  .body a { color: #e9e5df; text-underline-offset: 4px; }
+  .table-scroll { overflow-x: auto; margin: 22px 0 28px; }
+  table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+  caption { padding: 0 0 12px; color: #a39e97; font-size: .78rem; text-align: left; }
+  th, td { padding: 12px 13px; border-bottom: 1px solid #34312e; text-align: left; white-space: nowrap; }
+  th { color: #aaa49c; font-weight: 500; background: #171614; border-top: 1px solid #34312e; }
+  td { color: #ddd8d1; }
+  tbody tr:hover { background: #171614; }
+  .numeric { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .figures { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 23px 0; }
+  .editorial-image { float: right; width: 42%; margin: 3px 0 17px 23px; }
+  .editorial-image img { display: block; width: 100%; height: auto; border: 1px solid #38342f; border-radius: 4px; }
+  .clearfix::after { content: ''; display: table; clear: both; }
+  .editorial-image a, .figures a { display: block; cursor: zoom-in; }
+  .editorial-image a:hover img, .figures a:hover img { border-color: #9d9389; }
+  .workflow { margin: 17px 0 19px; padding: 14px 18px; border-left: 2px solid #847769; background: #171614; color: #d0c9c0; font-size: .83rem; line-height: 1.9; }
+  .workflow strong { color: #f1eee8; }
+  .micro-note { font-size: .8rem !important; color: #9b948e !important; }
+  figure { margin: 0; min-width: 0; }
+  figure img {
+    display: block;
+    width: 100%;
+    height: 235px;
+    object-fit: contain;
+    background: #171614;
+    border: 1px solid #38342f;
+    border-radius: 4px;
+  }
+  figcaption { margin-top: 10px; color: #aaa49d; font-size: .79rem; line-height: 1.6; }
+  figcaption strong { color: #e5dfd7; font-weight: 500; }
+  .article-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 45px;
+    padding-top: 22px;
+    border-top: 1px solid #34312e;
+    color: #99948d;
+    font-size: .8rem;
+  }
+  .article-footer a { color: #ded8d0; text-decoration: none; }
+  @media (max-width: 600px) {
+    .article { width: min(100% - 36px, 820px); padding-top: 35px; }
+    .article-header { padding: 38px 0 30px; }
+    h1 { font-size: clamp(2rem, 9vw, 2.6rem); }
+    .body section { margin-top: 30px; }
+    .figures { grid-template-columns: 1fr; }
+    .editorial-image { float: none; width: 100%; max-width: 450px; margin: 20px auto 22px; }
+    figure img { height: auto; max-height: 320px; }
+    th, td { padding: 10px 9px; }
+  }
+</style>

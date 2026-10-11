@@ -1,0 +1,222 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const models = [
+  { name: 'HTR-VT (augmented)', cer: '8.57%', note: 'Lowest reported CER' },
+  { name: 'TrOCR (augmented)', cer: '8.69%', note: 'Stronger word- and line-level metrics' },
+  { name: 'Kraken (augmented)', cer: '9.05%', note: 'CTC-based baseline' },
+];
+const augmentation = [
+  { metric: 'Character Error Rate', without: '10.27%', with: '8.57%' },
+  { metric: 'Word Error Rate', without: '44.11%', with: '36.91%' },
+  { metric: 'Word F1', without: '0.6140', with: '0.6781' },
+  { metric: 'Exact line accuracy', without: '11.33%', with: '16.53%' },
+  { metric: 'Perfect lines', without: '205', with: '299' },
+];
+---
+
+<Layout title="Bosančica AI — Tarik Agić">
+  <main class="article">
+    <a class="back" href="/work">← All projects</a>
+    <header class="article-header">
+      <p class="eyebrow">Computer Vision <span>·</span> Collaborative Research <span>·</span> 2025–2026</p>
+      <h1>Bosančica AI</h1>
+      <p class="dek">Handwritten text recognition for historical Bosančica manuscripts, combining document segmentation with a comparative evaluation of Kraken, TrOCR, and HTR-VT.</p>
+      <div class="byline"><span>University of Sarajevo</span><span class="separator">·</span><span>HTR-VT research and implementation</span></div>
+      <nav class="resources" aria-label="Project resources">
+        <a href="https://bosancica.ai" target="_blank" rel="noopener noreferrer">Research interface ↗</a>
+        <a href="https://github.com/Intellindust-AI-Lab/HTR-VT" target="_blank" rel="noopener noreferrer">Original HTR-VT architecture ↗</a>
+      </nav>
+      <p class="access-note">The research interface may require authorization. Project code, manuscript images, and the research manuscript are not linked here pending public-release approval.</p>
+    </header>
+
+    <article class="body">
+      <section aria-labelledby="overview">
+        <h2 id="overview">Overview</h2>
+        <p>Bosančica AI explores the digitization of historical manuscripts written in Bosančica, with the goal of converting scanned pages into editable and searchable text. The research combines line segmentation, expert-prepared reference transcriptions, and handwritten text recognition (HTR).</p>
+        <p>The collaborative project studied three manuscript books, comprising approximately 375 pages, and compared three recognition approaches: Kraken, TrOCR, and HTR-VT. Beyond character accuracy, the evaluation examined word-level errors, exact-line recognition, model confidence, and inference speed. The system is a research prototype intended to support, rather than replace, expert review.</p>
+      </section>
+
+      <section aria-labelledby="pipeline">
+        <h2 id="pipeline">Recognition pipeline</h2>
+        <p>At the project level, manuscript pages are segmented into text lines before a recognition model produces character sequences. Kraken BLLA and manually corrected eScriptorium annotations supported segmentation; a geometric merging heuristic addressed fragmented baselines. The extracted lines were then evaluated using Kraken, TrOCR, and HTR-VT recognizers against expert reference text.</p>
+        <div class="pipeline" aria-label="Manuscript recognition pipeline">
+          <div><span class="step">01</span><strong>Manuscript pages</strong><small>Historical scans</small></div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div><span class="step">02</span><strong>Line segmentation</strong><small>Detection and correction</small></div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div><span class="step">03</span><strong>HTR recognition</strong><small>Kraken / TrOCR / HTR-VT</small></div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div><span class="step">04</span><strong>Text output</strong><small>Expert review</small></div>
+        </div>
+        <p>Segmentation, Kraken and TrOCR development, Unicode analysis, and the application interface were collaborative or teammate-owned workstreams. My primary responsibility was the HTR-VT recognizer and its evaluation.</p>
+      </section>
+
+      <section aria-labelledby="contribution">
+        <h2 id="contribution">My contribution: HTR-VT</h2>
+        <p>I led the complete <strong>HTR-VT workstream</strong>, adapting an existing published CNN–Vision Transformer–CTC architecture to the Bosančica corpus and its character vocabulary. The implementation uses a modified ResNet-18 feature extractor, four Vision Transformer encoder layers, and CTC-based sequence recognition.</p>
+        <p>I trained controlled variants with and without image augmentation, using AdamW with Sharpness-Aware Minimization, span feature masking, exponential moving average weights, and validation-based checkpoint selection. The experiments used document-level training, validation, and test splits to reduce leakage between manuscript pages.</p>
+        <p>I also conducted character-, word-, and line-level evaluation, paired statistical testing, error profiling, confidence calibration, and inference-speed benchmarking. The findings were documented for the project's final performance report and research manuscript. The HTR-VT architecture itself was developed by its original authors; my contribution was its adaptation, experimentation, and analysis.</p>
+      </section>
+
+      <section aria-labelledby="results">
+        <h2 id="results">Experimental results</h2>
+        <p>Image augmentation improved recognition performance on the same <strong>1,809-line HTR-VT test set</strong>. Character Error Rate decreased from 10.27% to 8.57% (a 16.6% relative reduction), while Word Error Rate decreased from 44.11% to 36.91%.</p>
+        <div class="table-scroll"><table>
+          <caption>Controlled HTR-VT augmentation experiment</caption>
+          <thead><tr><th>Metric</th><th>No augmentation</th><th>Augmentation</th></tr></thead>
+          <tbody>{augmentation.map((m) => <tr><td>{m.metric}</td><td class="numeric">{m.without}</td><td class="numeric">{m.with}</td></tr>)}</tbody>
+        </table></div>
+        <p>The augmented model produced 299 perfectly recognized lines, compared with 205 without augmentation. A paired bootstrap analysis supported the observed CER improvement, with a reported 95% confidence interval for the CER difference of [−0.0188, −0.0153].</p>
+        <div class="table-scroll"><table>
+          <caption>Selected final recognition-model comparison (reported CER)</caption>
+          <thead><tr><th>Configuration</th><th>CER ↓</th><th>Context</th></tr></thead>
+          <tbody>{models.map((m) => <tr><td>{m.name}</td><td class="numeric">{m.cer}</td><td>{m.note}</td></tr>)}</tbody>
+        </table></div>
+        <p>Augmented HTR-VT achieved the <strong>lowest reported CER</strong> among the final configurations, while TrOCR performed better on word-level and complete-line metrics. Cross-model test-line counts differed slightly, so these figures should not be interpreted as a perfectly paired model comparison.</p>
+        <p>In a batch-one inference benchmark on NVIDIA L40S hardware, HTR-VT processed approximately <strong>100 lines per second</strong>. These results characterize the reported experimental environment, not unrestricted real-world deployment performance.</p>
+      </section>
+
+      <section aria-labelledby="team">
+        <h2 id="team">Research team and status</h2>
+        <p>The research team comprised <strong>Farah Piralić, Emir Baručija, Tarik Agić, and Emin Hadžiabdić</strong>, within the Data Science and Artificial Intelligence programme at the Faculty of Electrical Engineering, University of Sarajevo. The work spans document processing, multiple recognition architectures, and a research interface.</p>
+        <p>The final performance report was completed in September 2026. A research manuscript is in preparation; its publication status and public availability should be confirmed before linking it. Manuscript imagery, reference text, and model artifacts are not reproduced here without confirmed publication permission.</p>
+      </section>
+    </article>
+    <footer class="article-footer"><span>Python · PyTorch · Computer Vision · HTR · CTC</span><a href="/work">← Back to work</a></footer>
+  </main>
+</Layout>
+
+<style>
+  .article {
+    width: min(820px, calc(100% - 48px));
+    margin-inline: auto;
+    padding: 56px 0 96px;
+  }
+  .back {
+    display: inline-flex;
+    color: #9d9b97;
+    font-size: .85rem;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .back:hover, .article a:hover { color: #f26a2e; }
+  .article-header { padding: 56px 0 38px; border-bottom: 1px solid #34312e; }
+  .eyebrow {
+    margin: 0 0 19px;
+    color: #b3aaa1;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+  }
+  .eyebrow span { margin: 0 7px; color: #6f6a64; }
+  h1 {
+    max-width: 790px;
+    margin: 0 0 21px;
+    font-size: clamp(2.2rem, 4.2vw, 3.45rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -.047em;
+    text-wrap: balance;
+  }
+  .dek {
+    max-width: 650px;
+    margin: 0;
+    color: #bcb7b0;
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 23px;
+    color: #a5a09a;
+    font-size: .8rem;
+  }
+  .separator { color: #6c6863; }
+  .resources { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+  .resources a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #49443e;
+    border-radius: 4px;
+    color: #e6e1d9;
+    font-size: .83rem;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .resources a:hover { border-color: #f26a2e; }
+  .body { padding-top: 5px; }
+  .body section { margin-top: 34px; }
+  h2 {
+    margin: 0 0 14px;
+    color: #f1eee8;
+    font-size: 1.34rem;
+    font-weight: 550;
+    line-height: 1.3;
+    letter-spacing: -.025em;
+  }
+  .body p {
+    max-width: 760px;
+    margin: 0 0 14px;
+    color: #c2beb8;
+    font-size: .94rem;
+    line-height: 1.8;
+  }
+  .body strong { color: #e9e5df; font-weight: 600; }
+  .body a { color: #e9e5df; text-underline-offset: 4px; }
+  .table-scroll { overflow-x: auto; margin: 22px 0 28px; }
+  table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+  caption { padding: 0 0 12px; color: #a39e97; font-size: .78rem; text-align: left; }
+  th, td { padding: 12px 13px; border-bottom: 1px solid #34312e; text-align: left; white-space: nowrap; }
+  th { color: #aaa49c; font-weight: 500; background: #171614; border-top: 1px solid #34312e; }
+  td { color: #ddd8d1; }
+  tbody tr:hover { background: #171614; }
+  .numeric { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .equation { margin: 18px 0; padding: 15px 18px; border-left: 2px solid #6b6258; background: #171614; color: #e9e5df; font-size: .95rem; overflow-x: auto; }
+  .figures { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 26px 0 26px; }
+  figure { margin: 0; min-width: 0; }
+  figure img {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background: #171614;
+    border: 1px solid #38342f;
+    border-radius: 4px;
+  }
+  figcaption { margin-top: 10px; color: #aaa49d; font-size: .79rem; line-height: 1.6; }
+  figcaption strong { color: #e5dfd7; font-weight: 500; }
+  .article-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 45px;
+    padding-top: 22px;
+    border-top: 1px solid #34312e;
+    color: #99948d;
+    font-size: .8rem;
+  }
+  .article-footer a { color: #ded8d0; text-decoration: none; }
+  @media (max-width: 600px) {
+    .article { width: min(100% - 36px, 820px); padding-top: 35px; }
+    .article-header { padding: 38px 0 30px; }
+    h1 { font-size: clamp(2rem, 9vw, 2.6rem); }
+    .body section { margin-top: 30px; }
+    .figures { grid-template-columns: 1fr; }
+    figure img { height: auto; max-height: 320px; }
+    th, td { padding: 10px 9px; }
+  }
+
+  .access-note {margin: 15px 0 0; color: #908b85; font-size: .78rem; line-height: 1.6;}
+  .pipeline { display: flex; align-items: stretch; gap: 9px; margin: 22px 0 24px; }
+  .pipeline > div { flex: 1; min-width: 0; padding: 14px 11px; border: 1px solid #38342f; background: #171614; border-radius: 4px; }
+  .pipeline .step { display: block; margin-bottom: 9px; font-size: .7rem; color: #f26a2e; }
+  .pipeline strong { display: block; font-size: .78rem; line-height: 1.35; font-weight: 550; color: #f1eee8; }
+  .pipeline small { display: block; margin-top: 6px; font-size: .69rem; line-height: 1.35; color: #9d9891; }
+  .pipeline .arrow { align-self: center; color: #8d8881; }
+  @media (max-width: 640px) { .pipeline { flex-wrap: wrap; } .pipeline > div { flex-basis: 42%; } .pipeline .arrow { display: none; } }
+</style>
