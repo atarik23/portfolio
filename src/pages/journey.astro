@@ -1,13 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+
 const journey = [
     {
         year: '2026',
         items: [
             {
                 title: '1st Place — Raiffeisen AI Hackathon',
-                type: 'award',
+                type: 'achievement',
+                image: 'https://static.klix.ba/media/images/vijesti/b_260518102.jpg?v=1',
                 description:
                     'Won first place at the Raiffeisen AI Hackathon.',
                 href: 'https://www.klix.ba/biznis/ai-rjesenja-koja-mijenjaju-bankarstvo-poznati-pobjednici-raiffeisen-ai-hackathona/260518102',
@@ -17,23 +19,23 @@ const journey = [
                 title: 'AI Full-Stack Developer — Next IT',
                 type: 'work',
                 description:
-                    'Worked as part of a development team on a full-stack AI-powered web application.',
-                href: '/work',
+                    'Worked with a development team on an AI-powered web application, contributing across the frontend, backend, and multimodal AI integrations.',
+                href: null,
                 external: false,
             },
             {
-                title: 'BosančicaAI',
+                title: 'Bosančica AI',
                 type: 'research',
                 description:
-                    'Contributed to collaborative OCR and HTR research on historical Bosančica documents.',
-                href: '/work',
+                    'Contributed to collaborative research on historical manuscript processing, text recognition, and evaluation.',
+                href: '/work/bosancica-ai',
                 external: false,
             },
             {
-                title: 'Prolog 02',
+                title: 'Prolog 2026',
                 type: 'community',
                 description:
-                    'Organized the second edition of Prolog, expanding the conference to three days of technology, AI, and engineering.',
+                    'Led the organizing team for a three-day technology conference with over 100 registered participants, parallel lectures, and workshops.',
                 href: '/elsewhere',
                 external: false,
             },
@@ -44,34 +46,42 @@ const journey = [
         items: [
             {
                 title: 'Teaching Assistant — Fundamental Concepts of AI',
-                type: 'teaching',
+                type: 'education',
                 description:
-                    'Joined the Faculty of Electrical Engineering, University of Sarajevo as a teaching assistant.',
-                href: '/work',
+                    'Independently led practical sessions introducing students to Python, machine learning, computer vision, NLP, and other AI topics.',
+                href: null,
                 external: false,
             },
             {
-                title: 'Prolog 01',
+                title: 'Secretary of Informatics — Vladimir Prelog',
                 type: 'community',
                 description:
-                    'Organized the first edition of Prolog, a technology conference for high-school and university students.',
+                    'Began coordinating technology-related activities and educational initiatives within the Scientific Society.',
+                href: '/elsewhere',
+                external: false,
+            },
+            {
+                title: 'Prolog 2025',
+                type: 'community',
+                description:
+                    'Co-organized the inaugural two-day conference in a three-person team, welcoming over 70 registered participants.',
                 href: '/elsewhere',
                 external: false,
             },
             {
                 title: 'EEML',
-                type: 'conference',
+                type: 'community',
                 description:
                     'Attended the Eastern European Machine Learning Summer School in Sarajevo.',
-                href: '/elsewhere',
+                href: null,
                 external: false,
             },
             {
                 title: 'WeAreDevelopers World Congress',
-                type: 'conference',
+                type: 'community',
                 description:
                     'Attended the WeAreDevelopers World Congress in Berlin.',
-                href: '/elsewhere',
+                href: null,
                 external: false,
             },
         ],
@@ -88,34 +98,35 @@ const journey = [
                 external: false,
             },
             {
-                title: 'International STEM Olympiad',
-                type: 'award',
+                title: 'Graduated from Prva bošnjačka gimnazija',
+                image: 'https://img.youtube.com/vi/1aS2Xltfel8/hqdefault.jpg',
+                type: 'education',
                 description:
-                    'Won a bronze medal in Mathematics at the 2024 final.',
+                    'Graduated as Student of the Generation, earning Cambridge AICE and IGCSE Diplomas with Distinction.',
+                href: 'https://www.youtube.com/watch?v=1aS2Xltfel8&t=3038s',
+                external: true,
+            },
+            {
+                title: 'International STEM Olympiad',
+                type: 'achievement',
+                description:
+                    'Won a bronze medal in Mathematics at the international final.',
                 href: null,
                 external: false,
             },
             {
                 title: 'Fyziklani',
-                type: 'competition',
+                type: 'achievement',
                 description:
                     'Competed in the international physics competition in Prague, finishing 53rd in Category A.',
-                href: null,
-                external: false,
+                href: 'https://fyziklani.org/2024/',
+                external: true,
             },
             {
                 title: 'Loudoun International Youth Leadership Summit',
-                type: 'international',
+                type: 'community',
                 description:
-                    'Participated in LIYLS 2024 in Virginia, USA.',
-                href: null,
-                external: false,
-            },
-            {
-                title: 'Graduated from Prva bošnjačka gimnazija',
-                type: 'education',
-                description:
-                    'Graduated as Student of the Generation / Valedictorian, with an AICE Diploma with Distinction.',
+                    'Participated in an international youth leadership summit in Virginia, USA.',
                 href: null,
                 external: false,
             },
@@ -126,19 +137,20 @@ const journey = [
         items: [
             {
                 title: 'European Digital Youth Summit',
-                type: 'international',
+                type: 'community',
                 description:
-                    'Participated in the European Digital Youth Summit in Bucharest.',
-                href: null,
-                external: false,
+                    'Participated in the European Digital Youth Summit in Bucharest, Romania.',
+                href: 'https://2022.edys.eu/',
+                external: true,
             },
             {
                 title: 'STEM Youth Camp',
-                type: 'science',
+                image: 'https://balkans.aljazeera.net/wp-content/uploads/2022/08/298833281_1936834233183903_4611565710249467626_n.jpg?quality=80&resize=770%2C513',
+                type: 'education',
                 description:
-                    'Participated in the STEM Youth Camp in Konjic organized by ANNT.',
-                href: null,
-                external: false,
+                    'Participated in the STEM Youth Camp in Konjic, organized by ANNT.',
+                href: 'https://balkans.aljazeera.net/teme/2022/8/19/stem-youth-camp-u-konjicu-mjesto-gdje-ucenici-imaju-dodir-sa-naukom',
+                external: true,
             },
         ],
     },
@@ -147,7 +159,7 @@ const journey = [
         items: [
             {
                 title: '1st Place — BRAVO Civic Hackathon',
-                type: 'award',
+                type: 'achievement',
                 description:
                     'Won first place at the BRAVO Civic Hackathon.',
                 href: null,
@@ -160,19 +172,21 @@ const journey = [
         items: [
             {
                 title: 'Federal Mathematics Competition',
-                type: 'competition',
+                image: 'https://static.klix.ba/media/images/vijesti/b_190413088.jpg?v=1',
+                type: 'achievement',
                 description:
                     'Won first place at the Federal Mathematics Competition.',
-                href: null,
-                external: false,
+                href: 'https://www.klix.ba/vijesti/bih/odrzano-federalno-takmicenje-iz-matematike-za-ucenike-osnovnih-skola/190413088',
+                external: true,
             },
             {
                 title: 'Federal Physics Competition',
-                type: 'competition',
+                image: '/images/journey/federal-physics-2019.png',
+                type: 'achievement',
                 description:
                     'Won first place at the Federal Physics Competition.',
-                href: null,
-                external: false,
+                href: 'https://dfufbih.ba/index.php/bs/16-nase-aktivnosti/31-odrzano-xxiv-federalno-takmicenje-iz-fizike-za-ucenike-osnovnih-skola',
+                external: true,
             },
         ],
     },
@@ -182,235 +196,171 @@ const journey = [
 <Layout title="journey — Tarik Agić">
     <main>
         <header class="page-header">
-            <p>03 / journey</p>
-
+            <p class="eyebrow">03 / journey</p>
             <h1>So far.</h1>
-
-            <span>
-                A timeline of competitions, education, technology,
-                research, community, and a few detours along the way.
-            </span>
+            <p class="page-intro">A timeline of education, research, competitions, and a few detours along the way.</p>
         </header>
 
-        <section class="timeline">
+        <section class="journey-list" aria-label="Journey timeline">
             {journey.map((period) => (
-                <div class="year">
-                    <div class="year__label">
-                        <span>{period.year}</span>
+                <section class="journey-year" aria-label={period.year}>
+                    <div class="journey-year-label">
+                        <h2>{period.year}</h2>
                     </div>
-
-                    <div class="year__content">
+                    <div class="journey-year-events">
                         {period.items.map((item) => (
-                            item.href ? (
-                                <a
-                                    class="event event--linked"
-                                    href={item.href}
-                                    target={item.external ? '_blank' : undefined}
-                                    rel={item.external ? 'noopener noreferrer' : undefined}
-                                >
-                                    <div class="event__top">
-                                        <p class="event__type">{item.type}</p>
-                                        <span class="event__action">
-                                            {item.external ? '↗' : '→'}
-                                        </span>
+                            <article class="journey-entry">
+                                {item.image && (
+                                    <div class="journey-thumb" aria-hidden="true">
+                                        <img src={item.image} alt="" width="120" height="80" loading="lazy" decoding="async" />
                                     </div>
-
-                                    <h2>{item.title}</h2>
-
-                                    <p class="event__description">
-                                        {item.description}
-                                    </p>
-                                </a>
-                            ) : (
-                                <article class="event">
-                                    <div class="event__top">
-                                        <p class="event__type">{item.type}</p>
-                                    </div>
-
-                                    <h2>{item.title}</h2>
-
-                                    <p class="event__description">
-                                        {item.description}
-                                    </p>
-                                </article>
-                            )
+                                )}
+                                <div class="journey-entry-copy">
+                                    <p class="journey-category">{item.type}</p>
+                                    <h3>
+                                        {item.href ? (
+                                            <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>
+                                                {item.title}<span class="journey-arrow" aria-hidden="true">{item.external ? ' ↗' : ' →'}</span>
+                                            </a>
+                                        ) : item.title}
+                                    </h3>
+                                    <p class="journey-description">{item.description}</p>
+                                </div>
+                            </article>
                         ))}
                     </div>
-                </div>
+                </section>
             ))}
         </section>
     </main>
 </Layout>
 
 <style>
-    .page-header {
-        min-height: 55vh;
-        padding: 120px 0 80px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        border-bottom: 1px solid #282828;
-    }
+    .page-header { padding: 92px 0 30px; border-bottom: 1px solid #292929; }
+    .eyebrow { margin: 0 0 12px; color: #858585; font-size: .72rem; letter-spacing: .12em; }
+    .page-header h1 { margin: 0 0 12px; font-size: clamp(3rem, 6vw, 5rem); font-weight: 500; letter-spacing: -.065em; line-height: 1; }
+    .page-intro { max-width: 650px; margin: 0; color: #969696; font-size: .92rem; line-height: 1.55; }
 
-    .page-header > p {
-        color: #777;
-        font-size: 0.8rem;
-        letter-spacing: 0.12em;
-        text-transform: lowercase;
-    }
-
-    .page-header h1 {
-        margin: 20px 0 24px;
-        font-size: clamp(4rem, 10vw, 9rem);
-        line-height: 0.9;
-        letter-spacing: -0.07em;
-        font-weight: 500;
-    }
-
-    .page-header > span {
-        max-width: 600px;
-        color: #888;
-        line-height: 1.6;
-    }
-
-    .timeline {
-        padding: 80px 0 140px;
-    }
-
-    .year {
+    .journey-list { padding: 14px 0 70px; }
+    .journey-year {
         display: grid;
-        grid-template-columns: 1fr 3fr;
+        grid-template-columns: minmax(115px, 15%) minmax(0, 1fr);
+        border-bottom: 1px solid #383838;
+    }
+    .journey-year-label {
+        border-right: 1px solid #383838;
+        padding: 18px 22px 18px 0;
+    }
+    .journey-year-label h2 {
+        position: sticky;
+        top: 110px;
+        margin: 0;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 500;
+        letter-spacing: -.045em;
+        line-height: 1.2;
+    }
+    .journey-year-events {
+        min-width: 0;
+        padding-left: 24px;
+    }
+    .journey-year-events .journey-entry:last-child { border-bottom: 0; }
+
+    .journey-entry {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 18px;
+        padding: 11px 0;
+        min-height: 102px;
         border-bottom: 1px solid #282828;
     }
-
-    .year__label {
-        padding: 48px 0;
-        border-right: 1px solid #282828;
-    }
-
-    .year__label span {
-        position: sticky;
-        top: 120px;
-        font-size: clamp(2rem, 5vw, 4rem);
-        font-weight: 500;
-        letter-spacing: -0.05em;
-    }
-
-    .year__content {
-        padding-left: 48px;
-    }
-
-    .event {
+    .journey-thumb {
+        flex: 0 0 120px;
+        width: 120px;
+        height: 80px;
+        min-width: 120px;
+        max-width: 120px;
+        overflow: hidden;
+        border-radius: 2px;
+        background: #1a1a1a;
         position: relative;
-        display: block;
-        padding: 48px 0;
-        border-bottom: 1px solid #202020;
+        isolation: isolate;
+    }
+    
+    /* Orange border and subtle image zoom */
+    .journey-thumb::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: transparent;
+        box-shadow: inset 0 0 0 2px transparent;
+        pointer-events: none;
+        transition: box-shadow 0.3s ease;
     }
 
-    .event:last-child {
-        border-bottom: none;
+    .journey-thumb img {
+        transition: transform 0.35s ease;
     }
 
-    .event__top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        max-width: 760px;
-    }
-
-    .event__type {
-        margin: 0 0 14px;
-        color: #666;
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        text-transform: lowercase;
-    }
-
-    .event__action {
-        color: #666;
-        font-size: 0.9rem;
-        opacity: 0;
-        transform: translateX(-6px);
-        transition:
-            opacity 180ms ease,
-            transform 180ms ease,
-            color 180ms ease;
-    }
-
-    .event h2 {
-        max-width: 700px;
-        margin: 0;
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
-        font-weight: 500;
-        letter-spacing: -0.04em;
-        transition:
-            transform 180ms ease,
-            color 180ms ease;
-    }
-
-    .event__description {
-        max-width: 600px;
-        margin: 16px 0 0;
-        color: #888;
-        line-height: 1.6;
-        transition: color 180ms ease;
-    }
-
-    .event--linked {
-        cursor: pointer;
-    }
-
-    .event--linked:hover h2 {
-        transform: translateX(8px);
-        color: #fff;
-    }
-
-    .event--linked:hover .event__description {
-        color: #aaa;
-    }
-
-    .event--linked:hover .event__action {
+    .journey-entry:hover .journey-thumb::after {
         opacity: 1;
-        transform: translateX(0);
-        color: #aaa;
+        box-shadow: inset 0 0 0 2px #f26a2e;
     }
+
+    .journey-entry:hover .journey-thumb img {
+        transform: scale(1.07);
+        filter: none;
+    }
+
+    .journey-thumb img {
+        transition: transform 0.35s ease;
+    }
+
+    .journey-entry:hover .journey-thumb {
+        outline-color: #f26a2e;
+    }
+
+    .journey-entry:hover .journey-thumb img {
+        transform: scale(1.07);
+    }
+    .journey-thumb img {
+        display: block;
+        width: 120px !important;
+        height: 80px !important;
+        max-width: 120px !important;
+        max-height: 80px !important;
+        min-width: 120px;
+        object-fit: cover;
+        border-radius: 2px;
+    }
+
+    .journey-entry-copy { flex: 1 1 auto; min-width: 0; }
+    .journey-category { margin: 0 0 4px; color: #999; font-size: .68rem; line-height: 1.2; letter-spacing: .08em; text-transform: uppercase; }
+    .journey-entry-copy h3 { margin: 0; color: #efefef; font-size: 1.05rem; font-weight: 500; line-height: 1.3; letter-spacing: -.015em; }
+    .journey-entry-copy h3 a { color: inherit; text-decoration: none; }
+    .journey-entry-copy h3 a:hover, .journey-entry-copy h3 a:focus-visible { color: #f26a2e; }
+    .journey-entry-copy h3 a:focus-visible { outline: 2px solid #f26a2e; outline-offset: 4px; }
+    .journey-arrow { color: #f26a2e; }
+    .journey-description { margin: 5px 0 0; color: #999; font-size: .87rem; line-height: 1.45; }
 
     @media (max-width: 700px) {
-        .page-header {
-            min-height: 45vh;
-            padding-top: 80px;
-        }
-
-        .timeline {
-            padding-top: 40px;
-            padding-bottom: 100px;
-        }
-
-        .year {
-            grid-template-columns: 1fr;
-        }
-
-        .year__label {
-            padding: 40px 0 10px;
-            border-right: none;
-        }
-
-        .year__label span {
-            position: static;
-        }
-
-        .year__content {
-            padding-left: 0;
-        }
-
-        .event__action {
-            opacity: 1;
-            transform: none;
-        }
-
-        .event--linked:hover h2 {
-            transform: none;
-        }
+        .page-header { padding: 80px 0 26px; }
+        .journey-year { grid-template-columns: 72px minmax(0, 1fr); }
+        .journey-year-label { padding: 14px 8px 14px 0; }
+        .journey-year-label h2 { top: 85px; font-size: 1.25rem; }
+        .journey-year-events { padding-left: 12px; }
+        .journey-entry { gap: 12px; padding: 10px 0; min-height: 88px; }
+        .journey-thumb { flex-basis: 88px; width: 88px; min-width: 88px; max-width: 88px; height: 66px; }
+        .journey-thumb img { width: 88px !important; min-width: 88px; max-width: 88px !important; height: 66px !important; max-height: 66px !important; }
+        .journey-entry-copy h3 { font-size: .95rem; }
+        .journey-description { font-size: .78rem; }
+    }
+    @media (max-width: 430px) {
+        .journey-year { grid-template-columns: 1fr; }
+        .journey-year-label { border-right: 0; border-bottom: 1px solid #383838; padding: 16px 0 8px; }
+        .journey-year-label h2 { position: static; }
+        .journey-year-events { padding-left: 0; }
     }
 </style>
