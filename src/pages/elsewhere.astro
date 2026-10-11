@@ -1,515 +1,118 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const experiences = [
-    {
-        year: '2025',
-        title: 'WeAreDevelopers World Congress',
-        location: 'Berlin, Germany',
-        type: 'technology conference',
-    },
-    {
-        year: '2025',
-        title: 'Eastern European Machine Learning Summer School',
-        location: 'Sarajevo, Bosnia & Herzegovina',
-        type: 'machine learning summer school',
-    },
-    {
-        year: '2024',
-        title: 'Loudoun International Youth Leadership Summit',
-        location: 'Virginia, USA',
-        type: 'international summit',
-    },
-    {
-        year: '2022',
-        title: 'European Digital Youth Summit',
-        location: 'Bucharest, Romania',
-        type: 'international program',
-    },
-    {
-        year: '2022',
-        title: 'STEM Youth Camp',
-        location: 'Konjic, Bosnia & Herzegovina',
-        type: 'STEM program',
-    },
-];
-
-const involvement = [
-    {
-        title: 'BH Futures Foundation',
-        type: 'community',
-    },
-    {
-        title: 'European Youth Parliament',
-        type: 'youth engagement',
-    },
-    {
-        title: 'Model United Nations',
-        type: 'youth engagement',
-    },
-    {
-        title: 'Limes',
-        type: 'science & research journal',
-    },
-    {
-        title: 'STEM & mathematics camps',
-        type: 'science',
-    },
-    {
-        title: 'Festival & community volunteering',
-        type: 'volunteering',
-    },
+const otherInvolvements = [
+  { title: 'Limes', detail: 'High-school science and research magazine', tag: 'Editorial' },
+  { title: 'BH Futures Foundation', detail: 'Alumni community', tag: 'Community' },
+  { title: 'Festival & community volunteering', detail: 'Supporting cultural and community events', tag: 'Volunteering' },
 ];
 ---
 
 <Layout title="elsewhere — Tarik Agić">
-    <main>
-        <header class="page-header">
-            <p>02 / elsewhere</p>
+  <main class="elsewhere-page">
+    <header class="elsewhere-hero">
+      <p class="kicker">02 / elsewhere</p>
+      <h1>Beyond the coursework.</h1>
+      <p>Building communities, creating opportunities, and contributing to things bigger than a single project.</p>
+    </header>
 
-            <h1>Beyond the coursework.</h1>
+    <section class="elsewhere-section" aria-labelledby="ndvp-title">
+      <div class="section-label"><span>01 / community & organizing</span><span>2025 — present</span></div>
+      <div class="ndvp-intro">
+        <div class="ndvp-heading">
+          <p class="kicker">Naučno društvo „Vladimir Prelog“</p>
+          <h2 id="ndvp-title">Making science more accessible.</h2>
+        </div>
+        <div class="ndvp-copy">
+          <p>As Secretary of Informatics at the Scientific Society “Vladimir Prelog”, I help organize initiatives that bring students closer to science, technology, and people working in these fields.</p>
+          <p>One of these initiatives is <strong>Prolog</strong>, a technology conference for high-school and university students, developed and organized within the Society.</p>
+        </div>
+      </div>
 
-            <span>
-                Science, community, conferences, organizing,
-                and some of the places curiosity has taken me.
-            </span>
-        </header>
+      <div class="prolog-heading"><h3>Prolog</h3><span>Two editions · Sarajevo</span></div>
+      <div class="prolog-grid">
+        <article class="prolog-card">
+          <a class="prolog-visual" href="https://www.instagram.com/p/DKmq3yFsB_G/?img_index=4" target="_blank" rel="noopener noreferrer" aria-label="Prolog 2025 photos on Instagram">
+            <img src="https://prolog.naucnodrustvo.org/images/audience1.webp" alt="Audience at Prolog 2025" loading="lazy" />
+          </a>
+          <div class="prolog-meta"><span>2025 / first edition</span><span>Sarajevo</span></div>
+          <h4><a href="https://www.instagram.com/p/DKmq3yFsB_G/?img_index=4" target="_blank" rel="noopener noreferrer">Prolog 2025 <span aria-hidden="true">↗</span></a></h4>
+          <p>Co-organized the first edition, bringing together more than 70 students from 13 cities for talks, hands-on activities, and conversations about technology.</p>
+        </article>
+        <article class="prolog-card">
+          <a class="prolog-visual prolog-visual--poster" href="https://prolog.naucnodrustvo.org/" target="_blank" rel="noopener noreferrer" aria-label="Prolog 2026 official website">
+            <span class="poster-kicker">Naučno društvo „Vladimir Prelog“</span>
+            <span class="poster-title">PROLOG<span>2026</span></span>
+            <span class="poster-foot">AI · computing · engineering</span>
+          </a>
+          <div class="prolog-meta"><span>2026 / second edition</span><span>Sarajevo</span></div>
+          <h4><a href="https://prolog.naucnodrustvo.org/" target="_blank" rel="noopener noreferrer">Prolog 2026 <span aria-hidden="true">↗</span></a></h4>
+          <p>Led the organizing committee for an expanded three-day conference featuring talks, practical workshops, and a student project expo.</p>
+        </article>
+      </div>
+      <p class="photo-note">2025 photo: official Prolog website. The 2026 graphic is a temporary placeholder until an event photograph is selected.</p>
+    </section>
 
-        <section class="community">
-            <div class="section-heading">
-                <p>community & leadership</p>
-                <span>Sarajevo · 2025 — present</span>
-            </div>
-
-            <article class="feature">
-                <div class="feature__meta">
-                    <span>Scientific Association</span>
-                    <span>Vladimir Prelog</span>
-                </div>
-
-                <div class="feature__content">
-                    <p class="feature__eyebrow">
-                        Naučno društvo "Vladimir Prelog"
-                    </p>
-
-                    <h2>Secretary of Informatics</h2>
-
-                    <p>
-                        Working on initiatives that connect young people
-                        with science, technology, and opportunities to
-                        learn, build, and collaborate.
-                    </p>
-                </div>
-            </article>
-
-            <div class="prolog-intro">
-                <div>
-                    <p>one of those initiatives</p>
-                </div>
-
-                <div>
-                    <h2>Prolog</h2>
-
-                    <p>
-                        A technology conference for high-school and
-                        university students, built around technology,
-                        artificial intelligence, engineering, learning,
-                        and community.
-                    </p>
-                </div>
-            </div>
-
-            <div class="prolog-grid">
-                <article class="prolog-card">
-                    <div class="prolog-card__top">
-                        <span>01</span>
-                        <span>2025</span>
-                    </div>
-
-                    <div>
-                        <h3>Prolog 01</h3>
-
-                        <p>
-                            The first edition brought together students
-                            interested in technology and AI for lectures,
-                            practical sessions, and conversations with
-                            people from academia and industry.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="prolog-card">
-                    <div class="prolog-card__top">
-                        <span>02</span>
-                        <span>2026</span>
-                    </div>
-
-                    <div>
-                        <h3>Prolog 02</h3>
-
-                        <p>
-                            The second edition expanded Prolog into a
-                            three-day conference covering technology,
-                            AI, engineering, workshops, and community.
-                        </p>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="experiences">
-            <div class="section-heading">
-                <p>conferences & experiences</p>
-                <span>{experiences.length} selected</span>
-            </div>
-
-            <div class="experience-list">
-                {experiences.map((experience) => (
-                    <article class="experience">
-                        <span class="experience__year">
-                            {experience.year}
-                        </span>
-
-                        <div class="experience__content">
-                            <p>{experience.type}</p>
-                            <h3>{experience.title}</h3>
-                        </div>
-
-                        <span class="experience__location">
-                            {experience.location}
-                        </span>
-                    </article>
-                ))}
-            </div>
-        </section>
-
-        <section class="involvement">
-            <div class="section-heading">
-                <p>also along the way</p>
-                <span>communities, programs & volunteering</span>
-            </div>
-
-            <div class="involvement-grid">
-                {involvement.map((item, index) => (
-                    <article class="involvement-item">
-                        <div class="involvement-item__top">
-                            <span>
-                                {String(index + 1).padStart(2, '0')}
-                            </span>
-
-                            <span>{item.type}</span>
-                        </div>
-
-                        <p>{item.title}</p>
-                    </article>
-                ))}
-            </div>
-        </section>
-    </main>
+    <section class="elsewhere-section elsewhere-section--last" aria-labelledby="other-title">
+      <div class="section-label"><span>02 / other involvements</span></div>
+      <h2 class="other-heading" id="other-title">Also along the way.</h2>
+      <div class="other-list">
+        {otherInvolvements.map((item) => (
+          <article class="other-item">
+            <span class="other-tag">{item.tag}</span>
+            <div><h3>{item.title}</h3><p>{item.detail}</p></div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
 </Layout>
 
-<style>
-    .page-header {
-        min-height: 55vh;
-        padding: 120px 0 80px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        border-bottom: 1px solid #282828;
-    }
-
-    .page-header > p,
-    .section-heading p {
-        color: #777;
-        font-size: 0.8rem;
-        letter-spacing: 0.12em;
-        text-transform: lowercase;
-    }
-
-    .page-header h1 {
-        max-width: 900px;
-        margin: 20px 0 24px;
-        font-size: clamp(3rem, 8vw, 7rem);
-        line-height: 0.95;
-        letter-spacing: -0.06em;
-        font-weight: 500;
-    }
-
-    .page-header > span {
-        max-width: 580px;
-        color: #888;
-        line-height: 1.6;
-    }
-
-    .community,
-    .experiences,
-    .involvement {
-        padding: 100px 0;
-    }
-
-    .section-heading {
-        display: flex;
-        justify-content: space-between;
-        gap: 32px;
-        margin-bottom: 40px;
-        color: #777;
-    }
-
-    .section-heading p,
-    .section-heading span {
-        margin: 0;
-    }
-
-    .section-heading span {
-        font-size: 0.85rem;
-    }
-
-    /* COMMUNITY */
-
-    .feature {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: 48px;
-        padding: 56px 0 80px;
-        border-top: 1px solid #282828;
-    }
-
-    .feature__meta {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        color: #777;
-        font-size: 0.8rem;
-    }
-
-    .feature__eyebrow {
-        margin: 0 0 12px;
-        color: #888;
-    }
-
-    .feature h2 {
-        max-width: 850px;
-        margin: 0;
-        font-size: clamp(2.5rem, 6vw, 5.5rem);
-        line-height: 0.95;
-        font-weight: 500;
-        letter-spacing: -0.06em;
-    }
-
-    .feature__content > p:last-child {
-        max-width: 620px;
-        margin: 32px 0 0;
-        color: #999;
-        line-height: 1.7;
-    }
-
-    /* PROLOG */
-
-    .prolog-intro {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: 48px;
-        padding: 64px 0;
-        border-top: 1px solid #282828;
-    }
-
-    .prolog-intro > div:first-child p {
-        margin: 0;
-        color: #777;
-        font-size: 0.8rem;
-        letter-spacing: 0.1em;
-        text-transform: lowercase;
-    }
-
-    .prolog-intro h2 {
-        margin: 0;
-        font-size: clamp(2.5rem, 5vw, 4.5rem);
-        font-weight: 500;
-        letter-spacing: -0.05em;
-    }
-
-    .prolog-intro > div:last-child p {
-        max-width: 650px;
-        margin: 24px 0 0;
-        color: #999;
-        line-height: 1.7;
-    }
-
-    .prolog-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        border-top: 1px solid #282828;
-        border-left: 1px solid #282828;
-    }
-
-    .prolog-card {
-        min-height: 340px;
-        padding: 32px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border-right: 1px solid #282828;
-        border-bottom: 1px solid #282828;
-        transition: background-color 180ms ease;
-    }
-
-    .prolog-card:hover {
-        background: #111;
-    }
-
-    .prolog-card__top {
-        display: flex;
-        justify-content: space-between;
-        color: #777;
-        font-size: 0.8rem;
-    }
-
-    .prolog-card h3 {
-        margin: 0;
-        font-size: clamp(2rem, 4vw, 3rem);
-        font-weight: 500;
-        letter-spacing: -0.045em;
-    }
-
-    .prolog-card p {
-        max-width: 470px;
-        margin: 18px 0 0;
-        color: #888;
-        line-height: 1.6;
-    }
-
-    /* EXPERIENCES */
-
-    .experience-list {
-        border-top: 1px solid #282828;
-    }
-
-    .experience {
-        display: grid;
-        grid-template-columns: 100px 1fr auto;
-        gap: 32px;
-        align-items: center;
-        padding: 32px 0;
-        border-bottom: 1px solid #282828;
-        transition: padding-left 180ms ease;
-    }
-
-    .experience:hover {
-        padding-left: 10px;
-    }
-
-    .experience__year,
-    .experience__location,
-    .experience p {
-        color: #777;
-        font-size: 0.8rem;
-    }
-
-    .experience p {
-        margin: 0 0 7px;
-    }
-
-    .experience h3 {
-        margin: 0;
-        font-size: clamp(1.25rem, 2.5vw, 1.7rem);
-        font-weight: 500;
-        letter-spacing: -0.025em;
-    }
-
-    .experience__location {
-        text-align: right;
-    }
-
-    /* INVOLVEMENT */
-
-    .involvement {
-        padding-bottom: 140px;
-    }
-
-    .involvement-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        border-top: 1px solid #282828;
-        border-left: 1px solid #282828;
-    }
-
-    .involvement-item {
-        min-height: 170px;
-        padding: 28px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border-right: 1px solid #282828;
-        border-bottom: 1px solid #282828;
-        transition: background-color 180ms ease;
-    }
-
-    .involvement-item:hover {
-        background: #111;
-    }
-
-    .involvement-item__top {
-        display: flex;
-        justify-content: space-between;
-        gap: 24px;
-        color: #666;
-        font-size: 0.75rem;
-    }
-
-    .involvement-item p {
-        margin: 32px 0 0;
-        font-size: clamp(1.1rem, 2vw, 1.5rem);
-        letter-spacing: -0.025em;
-    }
-
-    @media (max-width: 700px) {
-        .page-header {
-            min-height: 45vh;
-            padding-top: 80px;
-        }
-
-        .community,
-        .experiences,
-        .involvement {
-            padding: 70px 0;
-        }
-
-        .section-heading {
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .feature,
-        .prolog-intro {
-            grid-template-columns: 1fr;
-            gap: 28px;
-        }
-
-        .prolog-grid,
-        .involvement-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .prolog-card {
-            min-height: 280px;
-        }
-
-        .experience {
-            grid-template-columns: 60px 1fr;
-            gap: 20px;
-        }
-
-        .experience:hover {
-            padding-left: 0;
-        }
-
-        .experience__location {
-            grid-column: 2;
-            text-align: left;
-        }
-
-        .involvement {
-            padding-bottom: 100px;
-        }
-    }
+<style is:global>
+  .elsewhere-page { width: min(1200px, calc(100% - 48px)); margin: 0 auto; min-width: 0; overflow-x: clip; }
+  .elsewhere-page *, .elsewhere-page *::before, .elsewhere-page *::after { box-sizing: border-box; }
+  .elsewhere-page img { display: block; max-width: 100%; }
+  .elsewhere-page a { color: inherit; }
+  .elsewhere-hero { padding: 64px 0 35px; border-bottom: 1px solid #292929; }
+  .kicker, .section-label, .prolog-meta, .other-tag { color: #999; font-size: .76rem; letter-spacing: .09em; }
+  .elsewhere-hero .kicker { margin: 0 0 16px; }
+  .elsewhere-hero h1 { font-size: clamp(2.2rem, 4.3vw, 3.8rem); letter-spacing: -.065em; line-height: 1.02; font-weight: 500; margin: 0 0 16px; }
+  .elsewhere-hero > p:last-child { max-width: 720px; color: #aaa; font-size: .97rem; line-height: 1.6; margin: 0; }
+  .elsewhere-section { padding: 36px 0 52px; border-bottom: 1px solid #292929; }
+  .section-label { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 30px; }
+  .ndvp-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: start; margin-bottom: 34px; }
+  .ndvp-heading .kicker { margin: 0 0 14px; }
+  .ndvp-heading h2 { font-size: clamp(1.7rem, 2.8vw, 2.6rem); line-height: 1.1; letter-spacing: -.05em; font-weight: 500; margin: 0; max-width: 520px; }
+  .ndvp-copy p { color: #aaa; font-size: .94rem; line-height: 1.7; margin: 0 0 14px; }
+  .ndvp-copy strong { color: #f2eee9; font-weight: 500; }
+  .prolog-heading { display: flex; align-items: baseline; justify-content: space-between; border-top: 1px solid #292929; padding: 20px 0; gap: 16px; }
+  .prolog-heading h3 { font-size: 1.55rem; font-weight: 500; margin: 0; letter-spacing: -.035em; }
+  .prolog-heading span { color: #888; font-size: .78rem; }
+  .prolog-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .prolog-card { min-width: 0; }
+  .prolog-visual { display: flex; position: relative; overflow: hidden; width: 100%; aspect-ratio: 16 / 9; background: #151515; text-decoration: none; }
+  .prolog-visual::after { content: ''; position: absolute; inset: 0; z-index: 2; box-shadow: inset 0 0 0 2px transparent; pointer-events: none; transition: box-shadow .25s ease; }
+  .prolog-visual:hover::after { box-shadow: inset 0 0 0 2px #f26a2e; }
+  .prolog-visual img { width: 100%; height: 100%; min-width: 0; object-fit: cover; transition: transform .35s ease; }
+  .prolog-visual:hover img { transform: scale(1.045); }
+  .prolog-visual--poster { padding: 24px; flex-direction: column; justify-content: space-between; background: radial-gradient(circle at 85% 12%, #29333b, transparent 45%), #141a1e; }
+  .poster-kicker, .poster-foot { color: #8c9ba4; font-size: .72rem; letter-spacing: .08em; }
+  .poster-title { font-weight: 700; font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: .95; letter-spacing: -.07em; color: #f4f1eb; }
+  .poster-title span { display: block; color: #f26a2e; font-size: .45em; letter-spacing: -.03em; margin-top: 8px; }
+  .prolog-meta { display: flex; justify-content: space-between; margin: 15px 0 7px; gap: 12px; }
+  .prolog-card h4 { font-size: 1.35rem; font-weight: 500; letter-spacing: -.03em; margin: 0 0 8px; }
+  .prolog-card h4 a { color: inherit; text-decoration: none; }
+  .prolog-card h4 a span { color: #f26a2e; }
+  .prolog-card h4 a:hover { color: #f26a2e; }
+  .prolog-card > p { color: #a5a5a5; font-size: .88rem; line-height: 1.6; margin: 0; max-width: 510px; }
+  .photo-note { font-size: .73rem; color: #737373; margin: 15px 0 0; }
+  .elsewhere-section--last { border-bottom: 0; padding-bottom: 100px; }
+  .other-heading { font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 500; letter-spacing: -.05em; margin: 0 0 25px; }
+  .other-list { border-top: 1px solid #292929; }
+  .other-item { display: grid; grid-template-columns: 175px 1fr; gap: 24px; padding: 19px 0; border-bottom: 1px solid #292929; }
+  .other-tag { padding-top: 4px; }
+  .other-item h3 { font-size: 1.05rem; font-weight: 500; margin: 0 0 5px; }
+  .other-item p { color: #929292; font-size: .86rem; margin: 0; }
+  @media (max-width: 700px) { .elsewhere-hero { padding-top: 65px; } .ndvp-intro, .prolog-grid { grid-template-columns: 1fr; gap: 22px; } .ndvp-intro { margin-bottom: 35px; } .section-label { margin-bottom: 22px; } .other-item { grid-template-columns: 100px 1fr; gap: 14px; } .prolog-visual--poster { min-height: 190px; } }
+  @media (prefers-reduced-motion: reduce) { .prolog-visual img { transition: none; } }
 </style>
