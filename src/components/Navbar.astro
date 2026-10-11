@@ -9,7 +9,9 @@ const links = [
 ---
 <header class="site-header">
   <nav class="navbar" aria-label="Main navigation">
-    <a class="navbar__name" href="/" aria-label="Tarik Agić, home">ta<span class="navbar__dot">.</span></a>
+    <a class="navbar__name" href="/" aria-label="Tarik Agić, home">
+      <img src="/tarik-signature.svg" alt="Tarik Agić" class="navbar__signature" />
+    </a>
     <div class="navbar__links">
       {links.map((link) => (
         <a href={link.href} aria-current={pathname === link.href ? 'page' : undefined}>{link.label}</a>
@@ -21,8 +23,26 @@ const links = [
 <style>
   .site-header { border-bottom: 1px solid #242320; }
   .navbar { width: min(1200px, calc(100% - 48px)); min-height: 82px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .navbar__name { font-size: 1.45rem; font-weight: 700; letter-spacing: -.09em; line-height: 1; }
-  .navbar__dot { color: var(--accent); }
+  .navbar__name {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .navbar__signature {
+    display: block;
+    width: 115px;
+    height: auto;
+    max-height: 48px;
+    object-fit: contain;
+    object-position: left center;
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+
+  .navbar__name:hover .navbar__signature {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
   .navbar__links { display: flex; align-items: center; gap: clamp(14px, 3vw, 38px); }
   .navbar__links a { color: var(--muted); font-size: .86rem; transition: color 180ms ease; }
   .navbar__links a:hover, .navbar__links a[aria-current="page"] { color: var(--text); }
